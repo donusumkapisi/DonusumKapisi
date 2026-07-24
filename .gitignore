@@ -18,3 +18,6 @@ Thumbs.db
 *.pdf
 apps/mobile/.expo/
 apps/web/.vercel/
+
+.vercel
+.env*
