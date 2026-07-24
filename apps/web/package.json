@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm --filter @donusum-kapisi/db exec prisma migrate deploy && next build",
+    "build": "pnpm --filter @donusum-kapisi/db exec prisma generate && node ./scripts/vercel-migrate.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit"

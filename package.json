@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "turbo run dev",
-    "build": "turbo run build",
+    "build": "turbo run build --filter=web",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "postinstall": "pnpm --filter @donusum-kapisi/db generate"
