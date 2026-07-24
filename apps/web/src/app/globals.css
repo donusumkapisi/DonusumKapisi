@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-display-face);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Marka tokenleri: DönüşümKapısı — mobil uygulamayla ortak turkuaz/lacivert kimlik */
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-strong-soft: var(--surface-strong-soft);
+  --color-on-strong: var(--on-strong);
+  --color-clay: var(--clay);
+  --color-clay-soft: var(--clay-soft);
+  --color-petrol: var(--petrol);
+  --color-petrol-soft: var(--petrol-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-highlight: var(--highlight);
+  --color-highlight-soft: var(--highlight-soft);
+  --color-hairline: var(--hairline);
+  --color-hairline-invert: var(--hairline-invert);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  /* Açık tema — DönüşümKapısı mobil uygulamasıyla aynı turkuaz/lacivert kimlik */
+  --paper: #ffffff;
+  --surface: #eaf4f7;
+  --ink: #163449;
+  --ink-muted: #5b7a8a;
+  --surface-strong: #0e3446;
+  --surface-strong-soft: #43616f;
+  --on-strong: #ffffff;
+  --clay: #0fb4a5;
+  --clay-soft: #3fcbbd;
+  --petrol: #0e3446;
+  --petrol-soft: #0e7476;
+  --danger: #e4483f;
+  --danger-soft: #ed8882;
+  --warning: #f2924a;
+  --warning-soft: #f7b889;
+  --info: #0fb4a5;
+  --info-soft: #3fcbbd;
+  --highlight: #f2924a;
+  --highlight-soft: #f8c39b;
+  --hairline: #16344920;
+  --hairline-invert: #ffffff24;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--clay);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: color-mix(in oklch, var(--clay) 45%, transparent);
+  --radius: 0.75rem;
+}
+
+.dark {
+  /* Koyu tema — aynı turkuaz/lacivert kimlik, daha derin bir katmanda */
+  --paper: #0b1d27;
+  --surface: #12293650;
+  --ink: #eef6f8;
+  --ink-muted: #8fb0bf;
+  --surface-strong: #071620;
+  --surface-strong-soft: #434e56;
+  --on-strong: #ffffff;
+  --clay: #2ee0cd;
+  --clay-soft: #5be6d6;
+  --petrol: #071620;
+  --petrol-soft: #1a7b76;
+  --danger: #ff7b70;
+  --danger-soft: #ffa39b;
+  --warning: #ffaf72;
+  --warning-soft: #ffc79c;
+  --info: #2ee0cd;
+  --info-soft: #5be6d6;
+  --highlight: #ffaf72;
+  --highlight-soft: #ffcfaa;
+  --hairline: #eef6f826;
+  --hairline-invert: #ffffff2e;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--clay);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: color-mix(in oklch, var(--clay) 45%, transparent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--clay) 30%, transparent);
+    color: var(--ink);
+  }
+}

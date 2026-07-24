@@ -1,0 +1,66 @@
+{
+  "expo": {
+    "name": "DönüşümKapısı",
+    "slug": "donusum-kapisi",
+    "scheme": "donusumkapisi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.donusumkapisi.mobile",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.donusumkapisi.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Hesabınıza hızlıca ve güvenli şekilde giriş yapmak için Face ID kullanılır."
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.827109488884-nornffnfcbf7ka309cs418o2badsn16j"
+        }
+      ],
+      "expo-apple-authentication",
+      "./plugins/withGoogleSignInModularHeaders.js",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d223541e-0ab6-4255-9a73-29c5d8e4c4cf"
+      },
+      "router": {}
+    },
+    "owner": "donusumkapisi"
+  }
+}
