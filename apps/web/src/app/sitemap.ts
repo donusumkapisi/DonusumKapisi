@@ -3,27 +3,10 @@ import { prisma } from "@donusum-kapisi/db";
 import { BLOG_CATEGORIES } from "@donusum-kapisi/shared";
 import { SITE_URL } from "@/lib/site";
 
+/** Build sırasında DATABASE_URL yoksa prerender patlamasın. */
+export const dynamic = "force-dynamic";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, listings, categoryUpdated] = await Promise.all([
-    prisma.blogPost.findMany({
-      where: { published: true },
-      select: { slug: true, updatedAt: true, coverImageUrl: true, category: true },
-    }),
-    prisma.listing.findMany({
-      where: { status: "APPROVED" },
-      select: { listingNumber: true, updatedAt: true },
-    }),
-    prisma.blogPost.groupBy({
-      by: ["category"],
-      where: { published: true },
-      _max: { updatedAt: true },
-    }),
-  ]);
-
-  const categoryLastModified = new Map(
-    categoryUpdated.map((row) => [row.category, row._max.updatedAt ?? undefined])
-  );
-
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/blog`, changeFrequency: "daily", priority: 0.9 },
@@ -37,25 +20,60 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categoryRoutes: MetadataRoute.Sitemap = BLOG_CATEGORIES.map((c) => ({
     url: `${SITE_URL}/blog/kategori/${c.slug}`,
-    lastModified: categoryLastModified.get(c.slug),
     changeFrequency: "weekly" as const,
     priority: 0.75,
   }));
 
-  const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${SITE_URL}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
-    changeFrequency: "monthly",
-    priority: 0.8,
-    images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
-  }));
+  if (!process.env.DATABASE_URL?.trim()) {
+    return [...staticRoutes, ...categoryRoutes];
+  }
 
-  const listingRoutes: MetadataRoute.Sitemap = listings.map((listing) => ({
-    url: `${SITE_URL}/ilanlar/${listing.listingNumber}`,
-    lastModified: listing.updatedAt,
-    changeFrequency: "weekly",
-    priority: 0.6,
-  }));
+  try {
+    const [posts, listings, categoryUpdated] = await Promise.all([
+      prisma.blogPost.findMany({
+        where: { published: true },
+        select: { slug: true, updatedAt: true, coverImageUrl: true, category: true },
+      }),
+      prisma.listing.findMany({
+        where: { status: "APPROVED" },
+        select: { listingNumber: true, updatedAt: true },
+      }),
+      prisma.blogPost.groupBy({
+        by: ["category"],
+        where: { published: true },
+        _max: { updatedAt: true },
+      }),
+    ]);
 
-  return [...staticRoutes, ...categoryRoutes, ...blogRoutes, ...listingRoutes];
+    const categoryLastModified = new Map(
+      categoryUpdated.map((row) => [row.category, row._max.updatedAt ?? undefined])
+    );
+
+    const categoriesWithDates: MetadataRoute.Sitemap = BLOG_CATEGORIES.map((c) => ({
+      url: `${SITE_URL}/blog/kategori/${c.slug}`,
+      lastModified: categoryLastModified.get(c.slug),
+      changeFrequency: "weekly" as const,
+      priority: 0.75,
+    }));
+
+    const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+      url: `${SITE_URL}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
+    }));
+
+    const listingRoutes: MetadataRoute.Sitemap = listings.map((listing) => ({
+      url: `${SITE_URL}/ilanlar/${listing.listingNumber}`,
+      lastModified: listing.updatedAt,
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }));
+
+    return [...staticRoutes, ...categoriesWithDates, ...blogRoutes, ...listingRoutes];
+  } catch (error) {
+    console.error("[sitemap] DB okunamadı, statik rotalar dönülüyor:", error);
+    return [...staticRoutes, ...categoryRoutes];
+  }
 }
