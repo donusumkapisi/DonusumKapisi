@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
-import { ThresholdMark } from "@/components/brand/threshold-mark";
+import { BrandMark } from "@/components/brand/brand-logo";
 import { SignOutButton } from "@/components/auth/sign-out-button";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { LanguageSwitcher } from "@/components/theme/language-switcher";
@@ -48,7 +48,7 @@ export function Navbar({
           className="flex shrink-0 items-center gap-2"
           onClick={() => setIsOpen(false)}
         >
-          <ThresholdMark className="size-5 text-clay" />
+          <BrandMark className="size-9 rounded-lg" />
           <span className="font-display text-base tracking-tight text-ink">
             Dönüşüm<span className="text-clay">Kapısı</span>
           </span>

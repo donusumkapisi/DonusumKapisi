@@ -11,7 +11,7 @@ import {
   GOOGLE_NONCE_KEY,
   GOOGLE_ROLE_KEY,
 } from "@/lib/google-oauth";
-import { ThresholdMark } from "@/components/brand/threshold-mark";
+import { BrandMark } from "@/components/brand/brand-logo";
 
 function readHashParams() {
   if (typeof window === "undefined") return new URLSearchParams();
@@ -78,7 +78,7 @@ export default function GoogleCallbackPage() {
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 py-16">
-      <ThresholdMark className="size-8 text-clay" />
+      <BrandMark className="size-12" />
       {error ? (
         <div className="mt-8 max-w-sm text-center">
           <p className="text-sm text-danger">{error}</p>

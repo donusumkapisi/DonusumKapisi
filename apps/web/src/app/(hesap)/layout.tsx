@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Building2, Handshake, ShieldCheck } from "lucide-react";
-import { ThresholdMark } from "@/components/brand/threshold-mark";
+import { BrandLockup, BrandMark } from "@/components/brand/brand-logo";
 
 export default async function AuthLayout({
   children,
@@ -26,13 +26,13 @@ export default async function AuthLayout({
         />
 
         <div className="relative mx-auto w-full max-w-[26rem]">
-          <Link
-            href="/"
-            className="mb-8 inline-flex items-center gap-2 lg:hidden"
-          >
-            <ThresholdMark className="size-5 text-clay" />
-            <span className="font-display text-base tracking-tight text-ink">
-              Dönüşüm<span className="text-clay">Kapısı</span>
+          <Link href="/" className="mb-8 flex justify-center lg:hidden">
+            <BrandLockup className="h-24 dark:hidden" />
+            <span className="hidden items-center gap-2 dark:inline-flex">
+              <BrandMark className="size-9 rounded-lg" />
+              <span className="font-display text-base tracking-tight text-ink">
+                Dönüşüm<span className="text-clay">Kapısı</span>
+              </span>
             </span>
           </Link>
 
@@ -65,7 +65,7 @@ export default async function AuthLayout({
 
         <div className="relative">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <ThresholdMark className="size-7 text-white" />
+            <BrandMark className="size-10" />
             <span className="font-display text-lg tracking-tight text-white">
               Dönüşüm<span className="text-clay-soft">Kapısı</span>
             </span>

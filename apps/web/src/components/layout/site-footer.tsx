@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ThresholdMark } from "@/components/brand/threshold-mark";
+import { BrandMark } from "@/components/brand/brand-logo";
 
 export async function SiteFooter() {
   const t = await getTranslations("footer");
@@ -40,7 +40,7 @@ export async function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
-              <ThresholdMark className="text-white" />
+              <BrandMark className="size-10" />
               <span className="font-display text-lg text-white tracking-tight">
                 DönüşümKapısı
               </span>

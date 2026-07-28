@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Apple, BatteryFull, Bell, FileText, LineChart, PlayCircle, SignalHigh, Wifi } from "lucide-react";
-import { ThresholdMark } from "@/components/brand/threshold-mark";
+import { BrandMark } from "@/components/brand/brand-logo";
 import { FadeIn } from "@/components/motion/fade-in";
 
 /**
@@ -112,9 +112,7 @@ async function PhoneMockup() {
               </div>
             </div>
             <div className="mt-9 flex flex-col items-center">
-              <span className="flex size-12 items-center justify-center rounded-2xl bg-paper shadow-lg shadow-black/20">
-                <ThresholdMark className="size-6 text-surface-strong" />
-              </span>
+              <BrandMark className="size-12 rounded-2xl shadow-lg shadow-black/20" />
               <p className="mt-2.5 font-display text-base">DönüşümKapısı</p>
               <p className="text-[0.65rem] text-white/60">{t("mockupTagline")}</p>
             </div>
