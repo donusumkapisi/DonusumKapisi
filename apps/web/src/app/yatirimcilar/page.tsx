@@ -29,6 +29,7 @@ export default async function InvestorsPage() {
     {
       icon: LandPlot,
       title: t("opp1Title"),
+      tag: t("opp1Tag"),
       body: t("opp1Body"),
       href: "/ilanlar",
       cta: t("opp1Cta"),
@@ -36,6 +37,7 @@ export default async function InvestorsPage() {
     {
       icon: DoorOpen,
       title: t("opp4Title"),
+      tag: t("opp4Tag"),
       body: t("opp4Body"),
       href: "/ilanlar",
       cta: t("opp4Cta"),
@@ -43,6 +45,7 @@ export default async function InvestorsPage() {
     {
       icon: Building2,
       title: t("opp2Title"),
+      tag: t("opp2Tag"),
       body: t("opp2Body"),
       href: "/ilanlar",
       cta: t("opp2Cta"),
@@ -50,6 +53,7 @@ export default async function InvestorsPage() {
     {
       icon: MapPinned,
       title: t("opp3Title"),
+      tag: t("opp3Tag"),
       body: t("opp3Body"),
       href: "/ilanlar",
       cta: t("opp3Cta"),
@@ -143,11 +147,14 @@ export default async function InvestorsPage() {
           </FadeIn>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {opportunities.map(({ icon: Icon, title, body, href, cta }, i) => (
+            {opportunities.map(({ icon: Icon, title, tag, body, href, cta }, i) => (
               <FadeIn key={title} delay={i * 0.08}>
                 <article className="flex h-full flex-col border-t-2 border-clay bg-surface/50 px-6 py-7">
                   <Icon className="size-6 text-clay" />
                   <h3 className="mt-5 font-display text-xl text-ink">{title}</h3>
+                  <p className="mt-1.5 font-mono text-[0.7rem] tracking-[0.18em] text-clay uppercase">
+                    {tag}
+                  </p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted">{body}</p>
                   <Link
                     href={href}

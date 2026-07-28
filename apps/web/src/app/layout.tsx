@@ -27,11 +27,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "DönüşümKapısı — Kentsel Dönüşümde Güvenli Eşleşme",
+    default: "DönüşümKapısı — Binanız İçin En Doğru Dönüşüm Fırsatı",
     template: "%s — DönüşümKapısı",
   },
   description:
-    "Ev sahipleri ilan verir, müteahhitler teklif sunar. İletişim yalnızca DönüşümKapısı üzerinden yürür; eşleştirmeyi biz yönetiriz.",
+    "Değer üreten gayrimenkul fırsatlarını tek platformda keşfedin: arsa, daire ve bina. İletişim yalnızca DönüşümKapısı üzerinden yürür; eşleştirmeyi biz yönetiriz.",
 };
 
 export default async function RootLayout({
