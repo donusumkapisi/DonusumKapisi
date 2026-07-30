@@ -27,7 +27,8 @@
     "noResults": "No listings match this filter.",
     "featuredLabel": "Featured",
     "allListingsLabel": "All Listings · {{count}}",
-    "loadError": "Listings could not be loaded. Check your connection."
+    "loadError": "Listings could not be loaded. Check your connection.",
+    "networkError": "Could not reach the server. Make sure you are using the latest app build."
   },
   "listingCard": {
     "forSale": "For Sale"

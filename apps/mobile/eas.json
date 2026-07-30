@@ -9,6 +9,9 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.donusumkapisi.com"
       }
     },
     "preview": {
@@ -17,13 +20,18 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "http://10.41.40.11:3000",
+        "EXPO_PUBLIC_API_URL": "https://www.donusumkapisi.com",
         "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "827109488884-2titt9ro97ftv5vbrr8h3g2pjoim2m1t.apps.googleusercontent.com",
         "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "827109488884-nornffnfcbf7ka309cs418o2badsn16j.apps.googleusercontent.com"
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.donusumkapisi.com",
+        "EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID": "827109488884-2titt9ro97ftv5vbrr8h3g2pjoim2m1t.apps.googleusercontent.com",
+        "EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID": "827109488884-nornffnfcbf7ka309cs418o2badsn16j.apps.googleusercontent.com"
+      }
     }
   },
   "submit": {

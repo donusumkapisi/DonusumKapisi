@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Wi-Fi ağı değiştiğinde (sabah/akşam farklı ağlar vb.) EXPO_PUBLIC_API_URL'i
-// .env.local ve eas.json'daki preview build profiline otomatik yazar, sonra
-// Metro'yu (varsa) öldürüp güncel IP ile yeniden başlatır.
+// Yerel geliştirme için: EXPO_PUBLIC_API_URL'i bilgisayarın LAN IP'sine yazar.
+// Canlı API (https://www.donusumkapisi.com) kullanıyorsan bu scripti çalıştırma;
+// .env.local / eas.json zaten production URL ile ayarlı.
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
@@ -39,7 +39,9 @@ function detectLanIp() {
 }
 
 function updateEnvLocal(ip) {
-  let content = fs.readFileSync(ENV_LOCAL_PATH, "utf8");
+  let content = fs.existsSync(ENV_LOCAL_PATH)
+    ? fs.readFileSync(ENV_LOCAL_PATH, "utf8")
+    : "";
   const newLine = `EXPO_PUBLIC_API_URL=http://${ip}:${PORT}`;
   if (/^EXPO_PUBLIC_API_URL=.*$/m.test(content)) {
     content = content.replace(/^EXPO_PUBLIC_API_URL=.*$/m, newLine);
@@ -83,6 +85,9 @@ function killMetro() {
 
 const ip = detectLanIp();
 console.log(`Algılanan IP: ${ip}`);
+console.log(
+  "Not: Bu script yerel geliştirme içindir. Canlıda EXPO_PUBLIC_API_URL=https://www.donusumkapisi.com olmalı."
+);
 
 updateEnvLocal(ip);
 console.log(`.env.local güncellendi -> EXPO_PUBLIC_API_URL=http://${ip}:${PORT}`);

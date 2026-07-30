@@ -1,7 +1,10 @@
 import { Directory, File, Paths } from "expo-file-system";
 import { getStoredSession } from "./storage";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:3000";
+const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? "https://www.donusumkapisi.com").replace(
+  /\/$/,
+  ""
+);
 
 export async function downloadAndShareOffersPdf(listingNumber: string) {
   const session = await getStoredSession();

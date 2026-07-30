@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import type { ListingDTO } from "@donusum-kapisi/shared";
-import { api } from "@/src/lib/api";
+import { ApiError, api } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
 import { ListingCard } from "@/src/components/listing-card";
@@ -42,8 +42,15 @@ export default function ListingsScreen() {
         minYas: minYas && minYas > 0 ? String(minYas) : undefined,
       });
       setListings(response.listings);
-    } catch {
-      setError(t("vitrin.loadError"));
+    } catch (err) {
+      setListings([]);
+      const message =
+        err instanceof ApiError
+          ? err.message
+          : err instanceof TypeError
+            ? t("vitrin.networkError")
+            : t("vitrin.loadError");
+      setError(message);
     } finally {
       setIsLoading(false);
     }

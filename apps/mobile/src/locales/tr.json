@@ -27,7 +27,8 @@
     "noResults": "Bu kritere uygun ilan bulunamadı.",
     "featuredLabel": "Öne Çıkan",
     "allListingsLabel": "Tüm İlanlar · {{count}}",
-    "loadError": "İlanlar yüklenemedi. Bağlantınızı kontrol edin."
+    "loadError": "İlanlar yüklenemedi. Bağlantınızı kontrol edin.",
+    "networkError": "Sunucuya ulaşılamadı. Uygulamanın güncel sürümünü kullandığınızdan emin olun."
   },
   "listingCard": {
     "forSale": "Satışta"

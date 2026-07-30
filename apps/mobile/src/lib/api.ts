@@ -24,7 +24,10 @@ import type {
 } from "@donusum-kapisi/shared";
 import { getStoredSession } from "./storage";
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:3000";
+const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? "https://www.donusumkapisi.com").replace(
+  /\/$/,
+  ""
+);
 
 export class ApiError extends Error {
   status: number;
