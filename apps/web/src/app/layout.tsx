@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { RTL_LOCALES, type Locale } from "@/i18n/locales";
 import { SITE_URL } from "@/lib/site";
@@ -27,11 +28,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "DönüşümKapısı — Binanız İçin En Doğru Dönüşüm Fırsatı",
+    default: "DönüşümKapısı — Binanız İçin En Doğru Dönüşüm Güvencesi",
     template: "%s — DönüşümKapısı",
   },
   description:
-    "Değer üreten gayrimenkul fırsatlarını tek platformda keşfedin: arsa, daire ve bina. İletişim yalnızca DönüşümKapısı üzerinden yürür; eşleştirmeyi biz yönetiriz.",
+    "Eski daireleri akıllı tercihlere dönüştürün, geleceğinize kalıcı değer kazandırın. Arsa, daire ve bina fırsatlarını tek platformda keşfedin; eşleştirmeyi biz yönetiriz.",
 };
 
 export default async function RootLayout({
@@ -56,6 +57,7 @@ export default async function RootLayout({
             <SiteHeader />
             <main className="flex-1">{children}</main>
             <SiteFooter />
+            <WhatsAppButton />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
