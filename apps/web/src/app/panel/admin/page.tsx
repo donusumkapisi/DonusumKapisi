@@ -1,198 +1,189 @@
-import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { getTranslations } from "next-intl/server";
-import { prisma } from "@donusum-kapisi/db";
-import { auth } from "@/lib/auth";
-import { Button } from "@/components/ui/button";
-import { SignOutButton } from "@/components/auth/sign-out-button";
-import { ListingStatusActions } from "@/components/panel/listing-status-actions";
-import { ResolveContactButton } from "@/components/panel/resolve-contact-button";
-import { ProposeAppointmentForm } from "@/components/panel/propose-appointment-form";
+import { getFormatter, getTranslations } from "next-intl/server";
+import {
+  ArrowUpRight,
+  Building2,
+  CheckCircle2,
+  Clock,
+  FileStack,
+  Flame,
+  Handshake,
+  MessagesSquare,
+  ShieldCheck,
+  UserPlus,
+} from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
-import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { StatCard } from "@/components/panel/stat-card";
 import { PanelEmptyState } from "@/components/panel/panel-empty-state";
-import { formatPriceRange } from "@/lib/listings";
-import { Building2, PhoneCall, ShieldCheck } from "lucide-react";
+import { AdminCard, AdminPageHeader, StatusPill } from "@/components/admin/admin-ui";
+import { AdminListingRow } from "@/components/admin/admin-listing-row";
+import { getAdminActivity, getAdminListings, getAdminMessages, getAdminQueueCounts } from "@/lib/admin";
+import { getPlatformStats } from "@/lib/analytics";
+import { formatPriceRange } from "@/lib/format";
+import type { AdminActivity } from "@/lib/admin";
 
-export default async function AdminPanelPage() {
-  const session = await auth();
-  if (!session) redirect("/giris");
-  if (session.user.role !== "ADMIN") redirect("/panel");
+const activityIcons = {
+  listing: Building2,
+  offer: Handshake,
+  user: UserPlus,
+  verification: ShieldCheck,
+} as const;
 
-  const [listings, contactQueue, contractorProfiles, t, tPanel] = await Promise.all([
-    prisma.listing.findMany({
-      include: { owner: { select: { name: true, email: true } } },
-      orderBy: [{ status: "asc" }, { createdAt: "desc" }],
-    }),
-    prisma.offer.findMany({
-      where: { status: "INTERESTED", contactResolvedAt: null },
-      include: {
-        listing: { select: { listingNumber: true, title: true, owner: { select: { name: true, email: true, phone: true } } } },
-        contractor: { select: { name: true, email: true, phone: true } },
-      },
-      orderBy: { updatedAt: "asc" },
-    }),
-    prisma.contractorProfile.findMany({
-      select: { verificationStatus: true },
-    }),
+export default async function AdminOverviewPage() {
+  const [stats, counts, pendingListings, openMessages, activity, t, format] = await Promise.all([
+    getPlatformStats(),
+    getAdminQueueCounts(),
+    getAdminListings({ status: "PENDING" }),
+    getAdminMessages("OPEN"),
+    getAdminActivity(8),
     getTranslations("panelAdmin"),
-    getTranslations("panel"),
+    getFormatter(),
   ]);
 
-  const statusLabels: Record<string, { label: string; className: string }> = {
-    PENDING: { label: tPanel("listingStatusPending"), className: "bg-warning/10 text-warning" },
-    APPROVED: { label: tPanel("listingStatusApproved"), className: "bg-clay/10 text-clay" },
-    REJECTED: { label: tPanel("listingStatusRejected"), className: "bg-danger/10 text-danger" },
-    CLOSED: { label: tPanel("listingStatusClosed"), className: "bg-surface text-ink-muted" },
-  };
+  const queueTotal = counts.listings + counts.messages + counts.verifications;
 
-  const pendingListings = listings.filter((listing) => listing.status === "PENDING").length;
-  const pendingVerifications = contractorProfiles.filter(
-    (profile) => profile.verificationStatus === "PENDING"
-  ).length;
+  function activityLabel(item: AdminActivity) {
+    if (item.kind !== "user") return item.subtitle;
+    return t(`role.${item.subtitle}`);
+  }
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16">
-      <FadeIn className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p className="font-mono text-xs tracking-[0.2em] text-clay uppercase">
-            {tPanel("adminEyebrow")}
-          </p>
-          <h1 className="mt-3 font-display text-3xl text-ink">{t("title")}</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button asChild variant="outline" size="sm">
-            <Link href="/panel/admin/analitik">{t("analyticsButton")}</Link>
-          </Button>
-          <Button asChild variant="outline" size="sm">
-            <Link href="/panel/admin/blog">{t("blogButton")}</Link>
-          </Button>
-          <SignOutButton className="h-9 px-4" />
-        </div>
+    <div className="space-y-10">
+      <FadeIn>
+        <AdminPageHeader
+          title={t("overviewTitle")}
+          description={queueTotal > 0 ? t("overviewQueue", { count: queueTotal }) : t("overviewClear")}
+        />
       </FadeIn>
 
-      <FadeIn delay={0.05} className="mt-8 grid grid-cols-3 gap-3">
-        <StatCard icon={Building2} label={t("statPendingListings")} value={pendingListings} />
-        <StatCard icon={PhoneCall} label={t("statPendingContact")} value={contactQueue.length} />
-        <StatCard icon={ShieldCheck} label={t("statPendingVerification")} value={pendingVerifications} />
+      <FadeIn delay={0.05} className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <StatCard icon={Clock} label={t("statPendingListings")} value={counts.listings} />
+        <StatCard icon={MessagesSquare} label={t("statPendingContact")} value={counts.messages} />
+        <StatCard icon={ShieldCheck} label={t("statPendingVerification")} value={counts.verifications} />
+        <StatCard icon={CheckCircle2} label={t("statLiveListings")} value={stats.approvedListings} />
+        <StatCard icon={FileStack} label={t("statTotalOffers")} value={stats.totalOffers} />
+        <StatCard icon={Flame} label={t("statInterestedOffers")} value={stats.interestedOffers} />
       </FadeIn>
 
-      <FadeIn delay={0.1} className="mt-10">
-        <h2 className="font-display text-xl text-ink">{t("contactQueueTitle")}</h2>
-        <p className="mt-1 text-sm text-ink-muted">
-          {t("contactQueueSubtitle")}
-        </p>
+      <FadeIn delay={0.1}>
+        <AdminPageHeader
+          title={t("pendingListingsTitle")}
+          description={t("pendingListingsSubtitle")}
+          action={
+            <Link
+              href="/panel/admin/ilanlar"
+              className="inline-flex items-center gap-1 text-sm text-clay hover:underline"
+            >
+              {t("seeAllListings")}
+              <ArrowUpRight className="size-3.5" />
+            </Link>
+          }
+        />
 
-        {contactQueue.length === 0 ? (
-          <PanelEmptyState icon={PhoneCall} title={t("contactQueueEmptyTitle")} subtitle={t("contactQueueEmptySubtitle")} />
+        {pendingListings.length === 0 ? (
+          <PanelEmptyState
+            icon={CheckCircle2}
+            title={t("pendingListingsEmptyTitle")}
+            subtitle={t("pendingListingsEmptySubtitle")}
+          />
         ) : (
           <div className="mt-4 space-y-3">
-            {contactQueue.map((offer) => (
-              <SpotlightCard key={offer.id} className="flex flex-wrap items-center justify-between gap-3 p-4">
-                <div className="min-w-0">
-                  <p className="font-mono text-xs text-ink-muted">
-                    #{offer.listing.listingNumber} · {formatPriceRange(offer.priceMin, offer.priceMax)}
-                  </p>
-                  <p className="mt-0.5 font-display text-base text-ink">{offer.listing.title}</p>
-                  <p className="mt-1 text-xs text-ink-muted">
-                    {t("ownerLabel", { name: offer.listing.owner.name ?? "", email: offer.listing.owner.email })}
-                    {offer.listing.owner.phone ? ` · ${offer.listing.owner.phone}` : ""}
-                  </p>
-                  <p className="text-xs text-ink-muted">
-                    {t("contractorLabel", { name: offer.contractor.name ?? "", email: offer.contractor.email })}
-                    {offer.contractor.phone ? ` · ${offer.contractor.phone}` : ""}
-                  </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <ProposeAppointmentForm offerId={offer.id} />
-                  <ResolveContactButton offerId={offer.id} />
-                </div>
-              </SpotlightCard>
+            {pendingListings.slice(0, 5).map((listing) => (
+              <AdminListingRow key={listing.id} listing={listing} />
             ))}
           </div>
         )}
       </FadeIn>
 
-      <FadeIn className="mt-12">
-        <h2 className="font-display text-xl text-ink">{t("verificationsTitle")}</h2>
+      <FadeIn delay={0.12}>
+        <AdminPageHeader
+          title={t("openMessagesTitle")}
+          description={t("openMessagesSubtitle")}
+          action={
+            <Link
+              href="/panel/admin/mesajlar"
+              className="inline-flex items-center gap-1 text-sm text-clay hover:underline"
+            >
+              {t("seeAllMessages")}
+              <ArrowUpRight className="size-3.5" />
+            </Link>
+          }
+        />
 
-        {contractorProfiles.length === 0 ? (
-          <PanelEmptyState icon={ShieldCheck} title={t("verificationsEmptyTitle")} subtitle={t("verificationsEmptySubtitle")} />
+        {openMessages.length === 0 ? (
+          <PanelEmptyState
+            icon={MessagesSquare}
+            title={t("contactQueueEmptyTitle")}
+            subtitle={t("contactQueueEmptySubtitle")}
+          />
         ) : (
-          <SpotlightCard className="mt-4 flex flex-wrap items-center justify-between gap-3 p-5">
-            <div className="min-w-0">
-              <p className="font-display text-base text-ink">
-                {t("verificationsQueue", { count: pendingVerifications })}
-              </p>
-              <p className="mt-0.5 text-xs text-ink-muted">{t("verificationsSubtitle")}</p>
-            </div>
-            <Button asChild variant="cta" size="sm">
-              <Link href="/panel/admin/dogrulama">{t("verificationsReviewButton")}</Link>
-            </Button>
-          </SpotlightCard>
+          <div className="mt-4 space-y-3">
+            {openMessages.slice(0, 3).map((offer) => (
+              <AdminCard key={offer.id} className="flex flex-wrap items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="font-mono text-xs text-ink-muted">
+                    #{offer.listing.listingNumber} · {formatPriceRange(offer.priceMin, offer.priceMax)}
+                  </p>
+                  <Link
+                    href={`/panel/admin/ilanlar/${offer.listing.listingNumber}`}
+                    className="mt-0.5 block truncate font-display text-base text-ink hover:text-clay"
+                  >
+                    {offer.listing.title}
+                  </Link>
+                  <p className="mt-1 truncate text-xs text-ink-muted">
+                    {t("partiesLabel", {
+                      owner: offer.listing.owner.name ?? offer.listing.owner.email,
+                      contractor: offer.contractor.name ?? offer.contractor.email,
+                    })}
+                  </p>
+                </div>
+                <StatusPill tone="pending">{t("needsContact")}</StatusPill>
+              </AdminCard>
+            ))}
+          </div>
         )}
       </FadeIn>
 
-      <FadeIn className="mt-12">
-        <h2 className="font-display text-xl text-ink">{t("listingsTitle")}</h2>
+      <FadeIn delay={0.15}>
+        <AdminPageHeader title={t("activityTitle")} description={t("activitySubtitle")} />
 
-        {listings.length === 0 ? (
-          <PanelEmptyState icon={Building2} title={t("listingsEmptyTitle")} subtitle={t("listingsEmptySubtitle")} />
+        {activity.length === 0 ? (
+          <PanelEmptyState
+            icon={Clock}
+            title={t("activityEmptyTitle")}
+            subtitle={t("activityEmptySubtitle")}
+          />
         ) : (
-          <div className="mt-6 space-y-4">
-            {listings.map((listing) => {
-              const status = statusLabels[listing.status];
+        <AdminCard className="mt-4 p-0">
+          <ul className="divide-y divide-hairline">
+            {activity.map((item) => {
+              const Icon = activityIcons[item.kind];
               return (
-                <SpotlightCard key={listing.id} className="flex flex-wrap items-center gap-4 p-4">
-                  <div className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-gradient-to-br from-petrol/25 via-surface to-clay/20">
-                    {listing.coverImageUrl && (
-                      <Image
-                        src={listing.coverImageUrl}
-                        alt={listing.title}
-                        fill
-                        sizes="64px"
-                        className="object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="font-mono text-xs text-ink-muted">
-                      #{listing.listingNumber} · {listing.district}, {listing.province}
-                    </p>
-                    <Link
-                      href={`/ilanlar/${listing.listingNumber}`}
-                      className="mt-0.5 block truncate font-display text-base text-ink hover:text-clay"
-                    >
-                      {listing.title}
-                    </Link>
-                    <p className="mt-0.5 text-xs text-ink-muted">
-                      {listing.owner.name} · {listing.owner.email}
-                    </p>
-                  </div>
-                  <span
-                    className={`shrink-0 rounded-full px-3 py-1 text-xs font-medium ${status.className}`}
-                  >
-                    {status.label}
+                <li key={item.id} className="flex items-center gap-3 px-4 py-3">
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-surface">
+                    <Icon className="size-4 text-clay" />
                   </span>
-                  <ListingStatusActions
-                    listingId={listing.id}
-                    actions={
-                      listing.status === "PENDING"
-                        ? [
-                            { status: "APPROVED", label: t("actionApprove"), variant: "cta" },
-                            { status: "REJECTED", label: t("actionReject"), variant: "cta-red" },
-                          ]
-                        : listing.status === "APPROVED"
-                          ? [{ status: "CLOSED", label: t("actionClose"), variant: "outline" }]
-                          : [{ status: "APPROVED", label: t("actionReapprove"), variant: "outline" }]
-                    }
-                  />
-                </SpotlightCard>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm text-ink">
+                      <span className="text-ink-muted">{t(`activity.${item.kind}`)} · </span>
+                      {item.href ? (
+                        <Link href={item.href} className="hover:text-clay">
+                          {item.title}
+                        </Link>
+                      ) : (
+                        item.title
+                      )}
+                    </p>
+                    <p className="truncate text-xs text-ink-muted">{activityLabel(item)}</p>
+                  </div>
+                  <time className="shrink-0 text-xs text-ink-muted" dateTime={item.at.toISOString()}>
+                    {format.relativeTime(item.at)}
+                  </time>
+                </li>
               );
             })}
-          </div>
+          </ul>
+        </AdminCard>
         )}
       </FadeIn>
     </div>

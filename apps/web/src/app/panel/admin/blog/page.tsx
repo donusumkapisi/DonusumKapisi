@@ -1,41 +1,32 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { prisma } from "@donusum-kapisi/db";
 import { getBlogCategoryLabel } from "@donusum-kapisi/shared";
-import { auth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
+import { AdminPageHeader } from "@/components/admin/admin-ui";
 import { DeleteBlogPostButton } from "@/components/panel/delete-blog-post-button";
 
 export default async function AdminBlogListPage() {
-  const session = await auth();
-  if (!session) redirect("/giris");
-  if (session.user.role !== "ADMIN") redirect("/panel");
-
-  const [posts, t, tPanel] = await Promise.all([
+  const [posts, t] = await Promise.all([
     prisma.blogPost.findMany({ orderBy: { createdAt: "desc" } }),
     getTranslations("panelBlogAdmin"),
-    getTranslations("panel"),
   ]);
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <p className="font-mono text-xs tracking-[0.2em] text-clay uppercase">
-            {tPanel("adminEyebrow")}
-          </p>
-          <h1 className="mt-3 font-display text-3xl text-ink">{t("listTitle")}</h1>
-        </div>
-        <Button asChild variant="cta">
-          <Link href="/panel/admin/blog/yeni">{t("newPostButton")}</Link>
-        </Button>
-      </div>
+    <div className="space-y-6">
+      <AdminPageHeader
+        title={t("listTitle")}
+        action={
+          <Button asChild variant="cta" size="sm">
+            <Link href="/panel/admin/blog/yeni">{t("newPostButton")}</Link>
+          </Button>
+        }
+      />
 
       {posts.length === 0 ? (
-        <p className="mt-6 text-sm text-ink-muted">{t("emptyState")}</p>
+        <p className="text-sm text-ink-muted">{t("emptyState")}</p>
       ) : (
-        <div className="mt-8 space-y-3">
+        <div className="space-y-3">
           {posts.map((post) => (
             <div
               key={post.id}

@@ -86,6 +86,32 @@ export async function getAppointmentForUser(appointmentId: string, userId: strin
   return appointment;
 }
 
+/** The admin organises the meeting, so they can also call it off for both sides. */
+export async function cancelAppointmentAsAdmin(appointmentId: string) {
+  const appointment = await prisma.appointment.findUnique({
+    where: { id: appointmentId },
+    include: { offer: { include: { listing: true } } },
+  });
+  if (!appointment) throw new AppointmentNotAllowedError("Randevu bulunamadı.");
+
+  const updated = await prisma.appointment.update({
+    where: { id: appointmentId },
+    data: { status: "CANCELLED" },
+  });
+
+  const notification = {
+    title: "Randevu iptal edildi",
+    body: `"${appointment.offer.listing.title}" için planlanan randevu iptal edildi.`,
+    data: { offerId: appointment.offerId },
+  };
+  await Promise.all([
+    sendPushNotification(appointment.offer.listing.ownerId, notification, "APPOINTMENTS"),
+    sendPushNotification(appointment.offer.contractorId, notification, "APPOINTMENTS"),
+  ]);
+
+  return updated;
+}
+
 export async function updateAppointmentStatus(
   appointmentId: string,
   userId: string,

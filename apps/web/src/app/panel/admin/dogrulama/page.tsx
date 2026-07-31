@@ -1,13 +1,11 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
-import { ArrowLeft, BadgeCheck, Clock, ShieldCheck } from "lucide-react";
+import { BadgeCheck, Clock, ShieldCheck } from "lucide-react";
 import type { ContractorVerificationStatus } from "@donusum-kapisi/db";
-import { auth } from "@/lib/auth";
 import { listContractorVerifications } from "@/lib/contractor-verification";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StatCard } from "@/components/panel/stat-card";
 import { PanelEmptyState } from "@/components/panel/panel-empty-state";
+import { AdminPageHeader } from "@/components/admin/admin-ui";
 import {
   ContractorReviewCard,
   type ContractorReview,
@@ -22,10 +20,6 @@ const reviewOrder: Record<ContractorVerificationStatus, number> = {
 };
 
 export default async function ContractorVerificationPage() {
-  const session = await auth();
-  if (!session) redirect("/giris");
-  if (session.user.role !== "ADMIN") redirect("/panel");
-
   const [profiles, t, format] = await Promise.all([
     listContractorVerifications(),
     getTranslations("panelAdmin"),
@@ -60,22 +54,12 @@ export default async function ContractorVerificationPage() {
   const approved = reviews.filter((review) => review.status === "APPROVED").length;
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-16">
+    <div className="space-y-6">
       <FadeIn>
-        <Link
-          href="/panel/admin"
-          className="inline-flex items-center gap-1.5 text-sm text-ink-muted hover:text-clay"
-        >
-          <ArrowLeft className="size-3.5" />
-          {t("backToAdmin")}
-        </Link>
-        <h1 className="mt-4 font-display text-3xl text-ink">{t("verificationsTitle")}</h1>
-        <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-muted">
-          {t("verificationsSubtitle")}
-        </p>
+        <AdminPageHeader title={t("verificationsTitle")} description={t("verificationsSubtitle")} />
       </FadeIn>
 
-      <FadeIn delay={0.05} className="mt-8 grid grid-cols-3 gap-3">
+      <FadeIn delay={0.05} className="grid grid-cols-3 gap-3">
         <StatCard icon={Clock} label={t("statPendingVerification")} value={waiting} />
         <StatCard icon={BadgeCheck} label={t("statApprovedContractors")} value={approved} />
         <StatCard icon={ShieldCheck} label={t("statTotalContractors")} value={reviews.length} />
@@ -88,7 +72,7 @@ export default async function ContractorVerificationPage() {
           subtitle={t("verificationsEmptySubtitle")}
         />
       ) : (
-        <div className="mt-8 space-y-4">
+        <div className="space-y-4">
           {reviews.map((review, index) => (
             <FadeIn key={review.profileId} delay={Math.min(index * 0.05, 0.3)}>
               <ContractorReviewCard review={review} />
