@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { updateContractorProfileSchema, validateListingPhotos } from "@donusum-kapisi/shared";
+import { updateContractorProfileSchema } from "@donusum-kapisi/shared";
 import { requireMobileUser } from "@/lib/mobile-auth";
 import { mobileErrorResponse } from "@/lib/mobile-api";
 import { getContractorProfile, updateContractorProfile } from "@/lib/contractor-profile";
@@ -35,18 +35,20 @@ export async function PATCH(request: Request) {
       );
     }
 
-    const documentFiles = formData
+    const hasDocuments = formData
       .getAll("documents")
-      .filter((entry): entry is File => entry instanceof File && entry.size > 0);
-
-    if (documentFiles.length > 0) {
-      const photoError = validateListingPhotos(documentFiles);
-      if (photoError) {
-        return NextResponse.json({ error: photoError }, { status: 400 });
-      }
+      .some((entry) => entry instanceof File && entry.size > 0);
+    if (hasDocuments) {
+      return NextResponse.json(
+        {
+          error:
+            "Evraklar artık tek tek doğrulanıyor. Yükleme için donusumkapisi.com/panel/muteahhit/belgeler adresini kullanın.",
+        },
+        { status: 400 }
+      );
     }
 
-    const profile = await updateContractorProfile(session.userId, parsed.data, documentFiles);
+    const profile = await updateContractorProfile(session.userId, parsed.data);
     return NextResponse.json({ profile: toContractorProfileDTO(profile) });
   } catch (error) {
     return mobileErrorResponse(error);

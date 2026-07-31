@@ -1,20 +1,28 @@
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
+import type { ContractorDocumentType } from "@donusum-kapisi/db";
 
 function extensionFor(mimeType: string) {
+  if (mimeType === "application/pdf") return "pdf";
   if (mimeType === "image/png") return "png";
   if (mimeType === "image/webp") return "webp";
   return "jpg";
 }
 
-export async function uploadContractorDocuments(files: File[], userId: string): Promise<string[]> {
-  const urls: string[] = [];
-  for (const file of files) {
-    const fileName = `contractors/${userId}/${Date.now()}.${extensionFor(file.type)}`;
-    const blob = await put(fileName, file, {
-      access: "public",
-      addRandomSuffix: true,
-    });
-    urls.push(blob.url);
+export async function uploadContractorDocument(
+  file: File,
+  userId: string,
+  type: ContractorDocumentType
+): Promise<string> {
+  const fileName = `contractors/${userId}/${type.toLowerCase()}.${extensionFor(file.type)}`;
+  const blob = await put(fileName, file, { access: "public", addRandomSuffix: true });
+  return blob.url;
+}
+
+/** Replacing a document leaves the previous blob behind; drop it so storage stays tidy. */
+export async function deleteContractorDocument(url: string) {
+  try {
+    await del(url);
+  } catch {
+    // A missing or already-deleted blob must not fail the upload that replaced it.
   }
-  return urls;
 }

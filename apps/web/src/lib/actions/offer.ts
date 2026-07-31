@@ -10,6 +10,7 @@ import {
   updateOfferStatus,
   ListingNotAvailableError,
   ForbiddenOfferActionError,
+  ContractorNotVerifiedError,
 } from "@/lib/offers";
 
 export type OfferActionState = { error: string } | { success: true } | null;
@@ -33,6 +34,9 @@ export async function createOfferAction(
   try {
     await upsertOffer(listingNumber, session.user.id, parsed.data);
   } catch (error) {
+    if (error instanceof ContractorNotVerifiedError) {
+      return { error: t("errorNotVerified") };
+    }
     if (error instanceof ListingNotAvailableError) {
       return { error: t("errorListingUnavailable") };
     }

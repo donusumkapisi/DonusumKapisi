@@ -2,15 +2,22 @@ import { prisma } from "@donusum-kapisi/db";
 import type { OfferStatus } from "@donusum-kapisi/db";
 import type { CreateOfferInput } from "@donusum-kapisi/shared";
 import { sendPushNotification } from "@/lib/push";
+import { isContractorApproved } from "@/lib/contractor-verification";
 
 export class ListingNotAvailableError extends Error {}
 export class ForbiddenOfferActionError extends Error {}
+export class ContractorNotVerifiedError extends Error {}
 
 export async function upsertOffer(
   listingNumber: string,
   contractorId: string,
   input: CreateOfferInput
 ) {
+  // Enforced here rather than per caller so web and mobile share the same rule.
+  if (!(await isContractorApproved(contractorId))) {
+    throw new ContractorNotVerifiedError();
+  }
+
   const listing = await prisma.listing.findUnique({ where: { listingNumber } });
   if (!listing || listing.status !== "APPROVED") {
     throw new ListingNotAvailableError();

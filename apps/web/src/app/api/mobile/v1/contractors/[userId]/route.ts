@@ -10,6 +10,8 @@ export async function GET(_request: Request, { params }: Params) {
   const { userId } = await params;
 
   const [profile, user, ratingSummary, reviews, portfolio] = await Promise.all([
+    // Documents are deliberately not loaded: this endpoint is public and the
+    // uploads contain tax certificates and signature circulars.
     prisma.contractorProfile.findUnique({ where: { userId } }),
     prisma.user.findUnique({ where: { id: userId }, select: { name: true, role: true } }),
     getContractorRatingSummary(userId),

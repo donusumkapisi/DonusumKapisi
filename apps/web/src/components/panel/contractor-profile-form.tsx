@@ -56,20 +56,6 @@ export function ContractorProfileForm({
         />
       </div>
 
-      <div className="space-y-1.5">
-        <Label htmlFor="documents" className="text-ink-muted">
-          {t("contractorProfileDocumentsLabel")}
-        </Label>
-        <input
-          id="documents"
-          name="documents"
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          multiple
-          className="block w-full text-sm text-ink-muted file:mr-3 file:rounded-lg file:border-0 file:bg-surface file:px-3 file:py-2 file:text-sm file:font-medium file:text-ink"
-        />
-      </div>
-
       {state && "error" in state && (
         <p role="alert" className="text-sm text-destructive">
           {state.error}

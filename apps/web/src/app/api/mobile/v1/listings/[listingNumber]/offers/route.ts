@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { createOfferSchema } from "@donusum-kapisi/shared";
 import { requireMobileUser } from "@/lib/mobile-auth";
 import { mobileErrorResponse } from "@/lib/mobile-api";
-import { upsertOffer, ListingNotAvailableError } from "@/lib/offers";
+import {
+  upsertOffer,
+  ListingNotAvailableError,
+  ContractorNotVerifiedError,
+} from "@/lib/offers";
 import { toOfferDTO } from "@/lib/dto";
 
 type Params = { params: Promise<{ listingNumber: string }> };
@@ -30,6 +34,12 @@ export async function POST(request: Request, { params }: Params) {
     const offer = await upsertOffer(listingNumber, session.userId, parsed.data);
     return NextResponse.json({ offer: toOfferDTO(offer) }, { status: 201 });
   } catch (error) {
+    if (error instanceof ContractorNotVerifiedError) {
+      return NextResponse.json(
+        { error: "Teklif verebilmek için evrak doğrulamanızın onaylanması gerekir." },
+        { status: 403 }
+      );
+    }
     if (error instanceof ListingNotAvailableError) {
       return NextResponse.json({ error: "İlan bulunamadı veya yayında değil." }, { status: 404 });
     }

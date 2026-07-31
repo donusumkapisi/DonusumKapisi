@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
@@ -19,7 +18,8 @@ import { PortfolioManager } from "@/components/panel/portfolio-manager";
 import { SavedSearchesSection } from "@/components/panel/saved-searches-section";
 import { NotificationPreferencesForm } from "@/components/panel/notification-preferences-form";
 import { formatPriceRange } from "@/lib/listings";
-import { getContractorProfile } from "@/lib/contractor-profile";
+import { getContractorVerification } from "@/lib/contractor-verification";
+import { VerificationStatusBanner } from "@/components/panel/verification-status-banner";
 import { listPortfolioItems } from "@/lib/portfolio";
 import { listSavedSearches } from "@/lib/saved-searches";
 import { getNotificationPreferences } from "@/lib/notification-preferences";
@@ -30,7 +30,7 @@ export default async function ContractorPanelPage() {
   if (!session) redirect("/giris");
   if (session.user.role !== "CONTRACTOR") redirect("/panel");
 
-  const [offers, t, tPanel] = await Promise.all([
+  const [offers, t, tPanel, tDocs] = await Promise.all([
     prisma.offer.findMany({
       where: { contractorId: session.user.id },
       include: {
@@ -41,6 +41,7 @@ export default async function ContractorPanelPage() {
     }),
     getTranslations("panelMuteahhit"),
     getTranslations("panel"),
+    getTranslations("contractorDocs"),
   ]);
 
   const offerStatusLabels: Record<string, { label: string; className: string }> = {
@@ -50,7 +51,8 @@ export default async function ContractorPanelPage() {
     WITHDRAWN: { label: tPanel("offerStatusWithdrawn"), className: "bg-surface text-ink-muted" },
   };
 
-  const profile = await getContractorProfile(session.user.id);
+  const profile = await getContractorVerification(session.user.id);
+  const verificationStatus = profile?.verificationStatus ?? "INCOMPLETE";
   const savedSearches = await listSavedSearches(session.user.id);
   const portfolioItems = await listPortfolioItems(session.user.id);
   const notificationPreferences = await getNotificationPreferences(session.user.id);
@@ -79,11 +81,27 @@ export default async function ContractorPanelPage() {
         <StatCard
           icon={BadgeCheck}
           label={t("statVerification")}
-          value={profile?.verified ? t("verificationVerified") : t("verificationPending")}
+          value={tDocs(`status.${verificationStatus}`)}
         />
       </FadeIn>
 
       <FadeIn delay={0.08} className="mt-10">
+        <h2 className="font-display text-xl text-ink">{tDocs("panelSectionTitle")}</h2>
+        <VerificationStatusBanner
+          status={verificationStatus}
+          note={profile?.verificationNote}
+          className="mt-4"
+        />
+        <div className="mt-3">
+          <Button asChild variant={verificationStatus === "APPROVED" ? "outline" : "cta"} size="sm">
+            <Link href="/panel/muteahhit/belgeler">
+              {verificationStatus === "APPROVED" ? tDocs("panelReview") : tDocs("panelComplete")}
+            </Link>
+          </Button>
+        </div>
+      </FadeIn>
+
+      <FadeIn delay={0.1} className="mt-10">
         <div className="flex items-center gap-3">
           <h2 className="font-display text-xl text-ink">{t("profileTitle")}</h2>
           {profile?.verified && (
@@ -98,25 +116,6 @@ export default async function ContractorPanelPage() {
             companyName={profile?.companyName ?? null}
             about={profile?.about ?? null}
           />
-
-          {profile && profile.documentUrls.length > 0 && (
-            <div className="mt-6 border-t border-hairline pt-4">
-              <p className="text-sm font-medium text-ink">{t("uploadedDocumentsLabel")}</p>
-              <div className="mt-2 flex flex-wrap gap-3">
-                {profile.documentUrls.map((url) => (
-                  <a
-                    key={url}
-                    href={url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="relative size-16 overflow-hidden rounded-lg border border-hairline transition-transform hover:scale-105"
-                  >
-                    <Image src={url} alt={tPanel("documentAlt")} fill sizes="64px" className="object-cover" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
         </SpotlightCard>
       </FadeIn>
 

@@ -421,7 +421,8 @@
     "ctaContractorLogin": "Вход подрядчика / предложение",
     "ctaHomeownerListing": "Собственник — разместить",
     "emailSubject": "По объявлению {number}",
-    "emailBody": "Здравствуйте, хочу узнать об объявлении {number}."
+    "emailBody": "Здравствуйте, хочу узнать об объявлении {number}.",
+    "errorNotVerified": "Чтобы подать предложение, ваши документы подрядчика должны быть одобрены. Заполните их в панели."
   },
   "listingWizard": {
     "authGateEyebrow": "Разместить объявление",
@@ -588,7 +589,6 @@
     "notificationPrefsSuccess": "Ваши настройки сохранены.",
     "contractorProfileCompanyName": "Название компании",
     "contractorProfileAbout": "О компании",
-    "contractorProfileDocumentsLabel": "Загрузить документы (налоговое свидетельство, торговый реестр и т.д.)",
     "contractorProfileSuccess": "Ваш профиль обновлён.",
     "documentAlt": "Документ",
     "portfolioAdding": "Добавление…",
@@ -674,7 +674,14 @@
     "actionApprove": "Одобрить",
     "actionReject": "Отклонить",
     "actionClose": "Закрыть",
-    "actionReapprove": "Одобрить повторно"
+    "actionReapprove": "Одобрить повторно",
+    "verificationsSubtitle": "Проверяйте заявки подрядчиков по каждому документу. Аккаунт подтверждается автоматически, когда одобрены все документы.",
+    "verificationsQueue": "Заявок на проверке: {count}",
+    "verificationsReviewButton": "Проверить заявки",
+    "statApprovedContractors": "Проверенные подрядчики",
+    "statTotalContractors": "Всего заявок",
+    "submittedAtLabel": "Отправлено: {date}",
+    "backToAdmin": "Назад в панель администратора"
   },
   "panelAnalytics": {
     "title": "Аналитика",
@@ -761,5 +768,70 @@
     "kvkkBody1": "Veri sorumlusu: DönüşümKapısı. İşlenen veriler; kimlik, iletişim, hesap ve ilan/teklif içerikleridir.",
     "kvkkBody2": "Amaçlar: üyelik, ilan yayınlama, teklif yönetimi, doğrulama, randevu organizasyonu ve yasal yükümlülükler.",
     "kvkkBody3": "Başvuru haklarınız için info@donusumkapisi.com üzerinden bize ulaşabilirsiniz."
+  },
+  "contractorDocs": {
+    "eyebrow": "Проверка документов",
+    "onboardingEyebrow": "Регистрация · Шаг 2/2",
+    "title": "Загрузите документы подрядчика",
+    "subtitle": "Прежде чем подавать предложения собственникам, мы должны проверить номер вашего разрешения и документы ниже. Проверка обычно занимает один рабочий день.",
+    "companyNameLabel": "Название компании",
+    "companyNamePlaceholder": "Напр. Kapı İnşaat Ltd. Şti.",
+    "mybnLabel": "Номер разрешения подрядчика (MYBN)",
+    "mybnHint": "16-значный номер, закреплённый за вашей компанией в системе YAMBİS.",
+    "mybnShort": "MYBN",
+    "mybnLookup": "Проверить в YAMBİS",
+    "mybnMissing": "Номер разрешения не указан.",
+    "formatHint": "Каждый документ — PDF, JPG, PNG или WEBP, до 10 МБ на файл.",
+    "requiredBadge": "Обязательно",
+    "willReplace": "Новый файл заменит текущий документ и вернёт его на проверку.",
+    "submitButton": "Отправить документы",
+    "submitButtonPending": "Отправка…",
+    "submitSuccess": "Ваши документы отправлены на проверку.",
+    "privacyNote": "Документы передаются только команде проверки DönüşümKapısı.",
+    "backToPanel": "Вернуться в панель",
+    "panelSectionTitle": "Проверка документов",
+    "panelComplete": "Дополнить документы",
+    "panelReview": "Посмотреть документы",
+    "approveAll": "Одобрить все",
+    "rejectApplication": "Отклонить заявку",
+    "confirmReject": "Отклонить",
+    "rejectNotePlaceholder": "Укажите причину (видна подрядчику)",
+    "adminMissingDocuments": "Не хватает документов: {list}",
+    "errorMustBeContractor": "Это действие доступно только аккаунтам подрядчиков.",
+    "errorFormInvalid": "Форма заполнена неверно.",
+    "errorMissingDocuments": "Осталось загрузить: {list}",
+    "errorMybnInUse": "Этот номер разрешения уже зарегистрирован на другой аккаунт.",
+    "type": {
+      "VERGI_LEVHASI": "Налоговое свидетельство",
+      "TICARET_SICIL_GAZETESI": "Газета торгового реестра",
+      "TICARET_ODASI_KAYDI": "Регистрация в торговой палате",
+      "IMZA_SIRKULERI": "Образцы подписей",
+      "FAALIYET_BELGESI": "Свидетельство о деятельности"
+    },
+    "hint": {
+      "VERGI_LEVHASI": "За текущий год, заверено налоговой инспекцией.",
+      "TICARET_SICIL_GAZETESI": "Объявление о регистрации и последние изменения, если есть.",
+      "TICARET_ODASI_KAYDI": "Выписка палаты, полученная за последние 6 месяцев.",
+      "IMZA_SIRKULERI": "Нотариально заверенные образцы подписей уполномоченных лиц.",
+      "FAALIYET_BELGESI": "Актуальное свидетельство о деятельности из палаты."
+    },
+    "status": {
+      "INCOMPLETE": "Не хватает",
+      "PENDING": "На проверке",
+      "APPROVED": "Одобрено",
+      "REJECTED": "Отклонено"
+    },
+    "bannerTitle": {
+      "INCOMPLETE": "Документы не полные",
+      "PENDING": "Документы на проверке",
+      "APPROVED": "Проверка пройдена",
+      "REJECTED": "Документы нужно исправить"
+    },
+    "bannerBody": {
+      "INCOMPLETE": "Пока не предоставлены все шесть пунктов, заявка не рассматривается и предложения недоступны.",
+      "PENDING": "Наша команда проверяет документы. После одобрения вы сможете подавать предложения.",
+      "APPROVED": "Теперь вы можете подавать предложения и носить знак проверенного подрядчика.",
+      "REJECTED": "Исправьте отмеченные ниже документы и загрузите их заново."
+    }
   }
 }

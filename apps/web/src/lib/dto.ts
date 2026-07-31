@@ -74,7 +74,7 @@ export function toOfferDTO(offer: Offer): OfferDTO {
 }
 
 export function toContractorProfileDTO(
-  profile: ContractorProfile,
+  profile: ContractorProfile & { documents?: { url: string }[] },
   ratingSummary: { averageRating: number | null; reviewCount: number } = {
     averageRating: null,
     reviewCount: 0,
@@ -85,7 +85,11 @@ export function toContractorProfileDTO(
     userId: profile.userId,
     companyName: profile.companyName,
     about: profile.about,
-    documentUrls: profile.documentUrls,
+    mybn: profile.mybn,
+    verificationStatus: profile.verificationStatus,
+    verificationNote: profile.verificationNote,
+    // Kept for mobile builds already in the field, which read this array.
+    documentUrls: profile.documents?.map((document) => document.url) ?? [],
     verified: profile.verified,
     updatedAt: profile.updatedAt.toISOString(),
     averageRating: ratingSummary.averageRating,

@@ -421,7 +421,8 @@
     "thumbnailAlt": "{title} — küçük resim {n}",
     "errorMustBeContractor": "Teklif vermek için müteahhit hesabıyla giriş yapmalısınız.",
     "errorFormInvalid": "Form geçersiz.",
-    "errorListingUnavailable": "İlan bulunamadı veya yayında değil."
+    "errorListingUnavailable": "İlan bulunamadı veya yayında değil.",
+    "errorNotVerified": "Teklif verebilmek için müteahhitlik evraklarınızın onaylanması gerekiyor. Panelinizden evraklarınızı tamamlayın."
   },
   "listingWizard": {
     "authGateEyebrow": "İlan Ver",
@@ -588,7 +589,6 @@
     "notificationPrefsSuccess": "Tercihleriniz kaydedildi.",
     "contractorProfileCompanyName": "Şirket Adı",
     "contractorProfileAbout": "Hakkında",
-    "contractorProfileDocumentsLabel": "Evrak Yükle (vergi levhası, ticaret sicil vb.)",
     "contractorProfileSuccess": "Profiliniz güncellendi.",
     "documentAlt": "Evrak",
     "portfolioAdding": "Ekleniyor…",
@@ -674,7 +674,14 @@
     "actionApprove": "Onayla",
     "actionReject": "Reddet",
     "actionClose": "Kapat",
-    "actionReapprove": "Tekrar Onayla"
+    "actionReapprove": "Tekrar Onayla",
+    "verificationsSubtitle": "Müteahhit başvurularını evrak bazında inceleyin. Tüm evraklar onaylanınca hesap otomatik doğrulanır.",
+    "verificationsQueue": "{count} başvuru inceleme bekliyor",
+    "verificationsReviewButton": "Başvuruları incele",
+    "statApprovedContractors": "Onaylı müteahhit",
+    "statTotalContractors": "Toplam başvuru",
+    "submittedAtLabel": "Gönderim: {date}",
+    "backToAdmin": "Yönetim paneline dön"
   },
   "panelAnalytics": {
     "title": "Analitik",
@@ -761,5 +768,70 @@
     "kvkkBody1": "Veri sorumlusu: DönüşümKapısı. İşlenen veriler; kimlik, iletişim, hesap ve ilan/teklif içerikleridir.",
     "kvkkBody2": "Amaçlar: üyelik, ilan yayınlama, teklif yönetimi, doğrulama, randevu organizasyonu ve yasal yükümlülükler.",
     "kvkkBody3": "Başvuru haklarınız için info@donusumkapisi.com üzerinden bize ulaşabilirsiniz."
+  },
+  "contractorDocs": {
+    "eyebrow": "Evrak doğrulama",
+    "onboardingEyebrow": "Kayıt · Adım 2/2",
+    "title": "Müteahhitlik evraklarınızı yükleyin",
+    "subtitle": "Ev sahiplerine teklif verebilmeniz için yetki belgesi numaranızı ve aşağıdaki evrakları doğrulamamız gerekiyor. İnceleme genellikle bir iş günü sürer.",
+    "companyNameLabel": "Şirket Ünvanı",
+    "companyNamePlaceholder": "Örn. Kapı İnşaat Ltd. Şti.",
+    "mybnLabel": "Müteahhitlik Yetki Belgesi Numarası (MYBN)",
+    "mybnHint": "YAMBİS'te firmanıza tanımlı 16 haneli numara.",
+    "mybnShort": "MYBN",
+    "mybnLookup": "YAMBİS'te sorgula",
+    "mybnMissing": "MYBN girilmemiş.",
+    "formatHint": "Her evrak PDF, JPG, PNG veya WEBP olabilir; dosya başına en fazla 10MB.",
+    "requiredBadge": "Zorunlu",
+    "willReplace": "Yeni dosya mevcut evrakın yerine geçecek ve yeniden incelenecek.",
+    "submitButton": "Evrakları gönder",
+    "submitButtonPending": "Gönderiliyor…",
+    "submitSuccess": "Evraklarınız incelemeye alındı.",
+    "privacyNote": "Evraklarınız yalnızca DönüşümKapısı doğrulama ekibiyle paylaşılır.",
+    "backToPanel": "Panele dön",
+    "panelSectionTitle": "Evrak doğrulama",
+    "panelComplete": "Evrakları tamamla",
+    "panelReview": "Evrakları görüntüle",
+    "approveAll": "Tümünü onayla",
+    "rejectApplication": "Başvuruyu reddet",
+    "confirmReject": "Reddet",
+    "rejectNotePlaceholder": "Gerekçe yazın (müteahhide gösterilir)",
+    "adminMissingDocuments": "Eksik evraklar: {list}",
+    "errorMustBeContractor": "Bu işlem yalnızca müteahhit hesapları içindir.",
+    "errorFormInvalid": "Form geçersiz.",
+    "errorMissingDocuments": "Şu evrakları yüklemeniz gerekiyor: {list}",
+    "errorMybnInUse": "Bu yetki belgesi numarası başka bir hesapta kayıtlı.",
+    "type": {
+      "VERGI_LEVHASI": "Vergi Levhası",
+      "TICARET_SICIL_GAZETESI": "Ticaret Sicil Gazetesi",
+      "TICARET_ODASI_KAYDI": "Ticaret Odası Kaydı",
+      "IMZA_SIRKULERI": "İmza Sirküleri",
+      "FAALIYET_BELGESI": "Faaliyet Belgesi"
+    },
+    "hint": {
+      "VERGI_LEVHASI": "Güncel yıla ait, vergi dairesi onaylı levha.",
+      "TICARET_SICIL_GAZETESI": "Kuruluş ve varsa son değişiklik ilanı.",
+      "TICARET_ODASI_KAYDI": "Son 6 ay içinde alınmış oda kayıt belgesi.",
+      "IMZA_SIRKULERI": "Şirketi temsile yetkili kişilerin noter onaylı sirküleri.",
+      "FAALIYET_BELGESI": "Odadan alınmış güncel faaliyet belgesi."
+    },
+    "status": {
+      "INCOMPLETE": "Eksik",
+      "PENDING": "İncelemede",
+      "APPROVED": "Onaylandı",
+      "REJECTED": "Reddedildi"
+    },
+    "bannerTitle": {
+      "INCOMPLETE": "Evraklarınız eksik",
+      "PENDING": "Evraklarınız incelemede",
+      "APPROVED": "Doğrulamanız tamamlandı",
+      "REJECTED": "Evraklarınızda düzeltme gerekiyor"
+    },
+    "bannerBody": {
+      "INCOMPLETE": "Altı bilginin tamamı yüklenmeden başvurunuz incelemeye alınmaz ve ilanlara teklif veremezsiniz.",
+      "PENDING": "Ekibimiz evraklarınızı kontrol ediyor. Onaylandığında teklif vermeye başlayabilirsiniz.",
+      "APPROVED": "Artık yayındaki ilanlara teklif verebilir ve profilinizde onay rozetini taşırsınız.",
+      "REJECTED": "Aşağıda belirtilen evrakları düzeltip yeniden yükleyin."
+    }
   }
 }

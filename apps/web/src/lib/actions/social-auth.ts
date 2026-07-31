@@ -10,13 +10,17 @@ import {
   SocialAuthError,
 } from "@/lib/social-login";
 import { createSocialProof } from "@/lib/social-proof";
+import { getContractorVerification } from "@/lib/contractor-verification";
 
 type AuthActionState = { error?: string; success?: string } | null;
 
-function redirectForRole(role: "HOMEOWNER" | "CONTRACTOR" | "ADMIN") {
-  if (role === "CONTRACTOR") return "/panel/muteahhit";
+async function redirectForUser(id: string, role: "HOMEOWNER" | "CONTRACTOR" | "ADMIN") {
   if (role === "ADMIN") return "/panel/admin";
-  return "/panel/ev-sahibi";
+  if (role !== "CONTRACTOR") return "/panel/ev-sahibi";
+
+  // A contractor who has never filed documents still owes the second signup step.
+  const profile = await getContractorVerification(id);
+  return profile?.submittedAt ? "/panel/muteahhit" : "/panel/muteahhit/belgeler";
 }
 
 export async function socialAuthAction(input: {
@@ -39,7 +43,7 @@ export async function socialAuthAction(input: {
     const proof = createSocialProof(user.id);
     await signIn("social", {
       proof,
-      redirectTo: redirectForRole(user.role),
+      redirectTo: await redirectForUser(user.id, user.role),
     });
   } catch (error) {
     if (error instanceof SocialAuthError) {

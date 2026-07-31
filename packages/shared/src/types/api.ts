@@ -57,6 +57,10 @@ export type ContractorProfileDTO = {
   userId: string;
   companyName: string | null;
   about: string | null;
+  mybn: string | null;
+  verificationStatus: "INCOMPLETE" | "PENDING" | "APPROVED" | "REJECTED";
+  verificationNote: string | null;
+  /** @deprecated Use the typed verification endpoints; kept for older mobile builds. */
   documentUrls: string[];
   verified: boolean;
   updatedAt: string;

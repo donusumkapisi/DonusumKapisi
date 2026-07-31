@@ -9,13 +9,12 @@ import { SignOutButton } from "@/components/auth/sign-out-button";
 import { ListingStatusActions } from "@/components/panel/listing-status-actions";
 import { ResolveContactButton } from "@/components/panel/resolve-contact-button";
 import { ProposeAppointmentForm } from "@/components/panel/propose-appointment-form";
-import { VerifyContractorButton } from "@/components/panel/verify-contractor-button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { SpotlightCard } from "@/components/motion/spotlight-card";
 import { StatCard } from "@/components/panel/stat-card";
 import { PanelEmptyState } from "@/components/panel/panel-empty-state";
 import { formatPriceRange } from "@/lib/listings";
-import { BadgeCheck, Building2, PhoneCall, ShieldCheck } from "lucide-react";
+import { Building2, PhoneCall, ShieldCheck } from "lucide-react";
 
 export default async function AdminPanelPage() {
   const session = await auth();
@@ -36,8 +35,7 @@ export default async function AdminPanelPage() {
       orderBy: { updatedAt: "asc" },
     }),
     prisma.contractorProfile.findMany({
-      include: { user: { select: { name: true, email: true } } },
-      orderBy: [{ verified: "asc" }, { updatedAt: "desc" }],
+      select: { verificationStatus: true },
     }),
     getTranslations("panelAdmin"),
     getTranslations("panel"),
@@ -51,7 +49,9 @@ export default async function AdminPanelPage() {
   };
 
   const pendingListings = listings.filter((listing) => listing.status === "PENDING").length;
-  const pendingVerifications = contractorProfiles.filter((profile) => !profile.verified).length;
+  const pendingVerifications = contractorProfiles.filter(
+    (profile) => profile.verificationStatus === "PENDING"
+  ).length;
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
@@ -121,41 +121,17 @@ export default async function AdminPanelPage() {
         {contractorProfiles.length === 0 ? (
           <PanelEmptyState icon={ShieldCheck} title={t("verificationsEmptyTitle")} subtitle={t("verificationsEmptySubtitle")} />
         ) : (
-          <div className="mt-4 space-y-3">
-            {contractorProfiles.map((profile) => (
-              <SpotlightCard key={profile.id} className="flex flex-wrap items-center justify-between gap-3 p-4">
-                <div className="min-w-0">
-                  <p className="font-display text-base text-ink">
-                    {profile.companyName || profile.user.name}
-                  </p>
-                  <p className="text-xs text-ink-muted">{profile.user.email}</p>
-                  {profile.documentUrls.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {profile.documentUrls.map((url) => (
-                        <a
-                          key={url}
-                          href={url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="relative size-12 overflow-hidden rounded-lg border border-hairline transition-transform hover:scale-105"
-                        >
-                          <Image src={url} alt={tPanel("documentAlt")} fill sizes="48px" className="object-cover" />
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                <div className="flex items-center gap-2">
-                  {profile.verified && (
-                    <span className="flex items-center gap-1 rounded-full bg-clay/10 px-3 py-1 text-xs font-medium text-clay">
-                      <BadgeCheck className="size-3.5" /> {tPanel("verifiedBadge")}
-                    </span>
-                  )}
-                  <VerifyContractorButton profileId={profile.id} verified={profile.verified} />
-                </div>
-              </SpotlightCard>
-            ))}
-          </div>
+          <SpotlightCard className="mt-4 flex flex-wrap items-center justify-between gap-3 p-5">
+            <div className="min-w-0">
+              <p className="font-display text-base text-ink">
+                {t("verificationsQueue", { count: pendingVerifications })}
+              </p>
+              <p className="mt-0.5 text-xs text-ink-muted">{t("verificationsSubtitle")}</p>
+            </div>
+            <Button asChild variant="cta" size="sm">
+              <Link href="/panel/admin/dogrulama">{t("verificationsReviewButton")}</Link>
+            </Button>
+          </SpotlightCard>
         )}
       </FadeIn>
 

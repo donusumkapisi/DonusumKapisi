@@ -421,7 +421,8 @@
     "ctaContractorLogin": "دخول المقاول / عرض",
     "ctaHomeownerListing": "مالك — انشر إعلاناً",
     "emailSubject": "بخصوص الإعلان {number}",
-    "emailBody": "مرحباً، أرغب بمعلومات عن الإعلان {number}."
+    "emailBody": "مرحباً، أرغب بمعلومات عن الإعلان {number}.",
+    "errorNotVerified": "يجب اعتماد مستندات المقاولة الخاصة بك قبل تقديم أي عرض. أكملها من لوحتك."
   },
   "listingWizard": {
     "authGateEyebrow": "أضف إعلانًا",
@@ -588,7 +589,6 @@
     "notificationPrefsSuccess": "تم حفظ تفضيلاتك.",
     "contractorProfileCompanyName": "اسم الشركة",
     "contractorProfileAbout": "نبذة",
-    "contractorProfileDocumentsLabel": "رفع المستندات (السجل الضريبي، السجل التجاري، إلخ)",
     "contractorProfileSuccess": "تم تحديث ملفك الشخصي.",
     "documentAlt": "مستند",
     "portfolioAdding": "جارٍ الإضافة…",
@@ -674,7 +674,14 @@
     "actionApprove": "موافقة",
     "actionReject": "رفض",
     "actionClose": "إغلاق",
-    "actionReapprove": "إعادة الموافقة"
+    "actionReapprove": "إعادة الموافقة",
+    "verificationsSubtitle": "راجع طلبات المقاولين مستنداً بمستند. يتم توثيق الحساب تلقائياً بمجرد اعتماد جميع المستندات.",
+    "verificationsQueue": "{count} طلبات بانتظار المراجعة",
+    "verificationsReviewButton": "مراجعة الطلبات",
+    "statApprovedContractors": "مقاولون موثّقون",
+    "statTotalContractors": "إجمالي الطلبات",
+    "submittedAtLabel": "أُرسل في: {date}",
+    "backToAdmin": "العودة إلى لوحة الإدارة"
   },
   "panelAnalytics": {
     "title": "التحليلات",
@@ -761,5 +768,70 @@
     "kvkkBody1": "Veri sorumlusu: DönüşümKapısı. İşlenen veriler; kimlik, iletişim, hesap ve ilan/teklif içerikleridir.",
     "kvkkBody2": "Amaçlar: üyelik, ilan yayınlama, teklif yönetimi, doğrulama, randevu organizasyonu ve yasal yükümlülükler.",
     "kvkkBody3": "Başvuru haklarınız için info@donusumkapisi.com üzerinden bize ulaşabilirsiniz."
+  },
+  "contractorDocs": {
+    "eyebrow": "التحقق من المستندات",
+    "onboardingEyebrow": "التسجيل · الخطوة ٢/٢",
+    "title": "ارفع مستندات المقاولة الخاصة بك",
+    "subtitle": "قبل أن تتمكن من تقديم عروض للمالكين، يجب أن نتحقق من رقم رخصة المقاولة والمستندات أدناه. تستغرق المراجعة عادةً يوم عمل واحد.",
+    "companyNameLabel": "اسم الشركة",
+    "companyNamePlaceholder": "مثال: Kapı İnşaat Ltd. Şti.",
+    "mybnLabel": "رقم رخصة المقاولة (MYBN)",
+    "mybnHint": "الرقم المكوّن من ١٦ خانة المسجّل لشركتك في نظام YAMBİS.",
+    "mybnShort": "MYBN",
+    "mybnLookup": "الاستعلام في YAMBİS",
+    "mybnMissing": "لم يتم إدخال رقم الرخصة.",
+    "formatHint": "كل مستند يمكن أن يكون PDF أو JPG أو PNG أو WEBP، بحد أقصى ١٠ ميغابايت للملف.",
+    "requiredBadge": "إلزامي",
+    "willReplace": "الملف الجديد يحل محل المستند الحالي ويعود إلى المراجعة.",
+    "submitButton": "إرسال المستندات",
+    "submitButtonPending": "جارٍ الإرسال…",
+    "submitSuccess": "مستنداتك قيد المراجعة الآن.",
+    "privacyNote": "تتم مشاركة مستنداتك مع فريق التحقق في DönüşümKapısı فقط.",
+    "backToPanel": "العودة إلى اللوحة",
+    "panelSectionTitle": "التحقق من المستندات",
+    "panelComplete": "استكمال المستندات",
+    "panelReview": "عرض المستندات",
+    "approveAll": "الموافقة على الكل",
+    "rejectApplication": "رفض الطلب",
+    "confirmReject": "رفض",
+    "rejectNotePlaceholder": "اكتب السبب (يظهر للمقاول)",
+    "adminMissingDocuments": "مستندات ناقصة: {list}",
+    "errorMustBeContractor": "هذا الإجراء مخصص لحسابات المقاولين فقط.",
+    "errorFormInvalid": "النموذج غير صالح.",
+    "errorMissingDocuments": "ما زال عليك رفع: {list}",
+    "errorMybnInUse": "رقم الرخصة هذا مسجّل بالفعل لحساب آخر.",
+    "type": {
+      "VERGI_LEVHASI": "الشهادة الضريبية",
+      "TICARET_SICIL_GAZETESI": "جريدة السجل التجاري",
+      "TICARET_ODASI_KAYDI": "قيد الغرفة التجارية",
+      "IMZA_SIRKULERI": "نموذج التواقيع المعتمد",
+      "FAALIYET_BELGESI": "شهادة مزاولة النشاط"
+    },
+    "hint": {
+      "VERGI_LEVHASI": "للسنة الحالية ومعتمدة من دائرة الضرائب.",
+      "TICARET_SICIL_GAZETESI": "إعلان التأسيس وآخر تعديل إن وُجد.",
+      "TICARET_ODASI_KAYDI": "قيد صادر خلال آخر ٦ أشهر.",
+      "IMZA_SIRKULERI": "نموذج موثّق للأشخاص المخوّلين بتمثيل الشركة.",
+      "FAALIYET_BELGESI": "شهادة نشاط حديثة من الغرفة."
+    },
+    "status": {
+      "INCOMPLETE": "ناقص",
+      "PENDING": "قيد المراجعة",
+      "APPROVED": "معتمد",
+      "REJECTED": "مرفوض"
+    },
+    "bannerTitle": {
+      "INCOMPLETE": "مستنداتك ناقصة",
+      "PENDING": "مستنداتك قيد المراجعة",
+      "APPROVED": "اكتمل التحقق الخاص بك",
+      "REJECTED": "مستنداتك بحاجة إلى تصحيح"
+    },
+    "bannerBody": {
+      "INCOMPLETE": "لا تتم مراجعة طلبك ولا يمكنك تقديم عروض قبل استكمال البنود الستة جميعها.",
+      "PENDING": "يقوم فريقنا بفحص مستنداتك. يمكنك تقديم العروض بمجرد اعتمادها.",
+      "APPROVED": "يمكنك الآن تقديم عروض على الإعلانات المنشورة وتحمل شارة التوثيق.",
+      "REJECTED": "صحّح المستندات المشار إليها أدناه وأعد رفعها."
+    }
   }
 }

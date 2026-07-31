@@ -18,7 +18,8 @@ import { prisma } from "@donusum-kapisi/db";
 export type AuthActionState = { error?: string; success?: string } | null;
 
 function redirectForRole(role: "HOMEOWNER" | "CONTRACTOR" | "ADMIN") {
-  if (role === "CONTRACTOR") return "/panel/muteahhit";
+  // New contractors land on the second signup step: yetki belgesi ve evraklar.
+  if (role === "CONTRACTOR") return "/panel/muteahhit/belgeler";
   if (role === "ADMIN") return "/panel/admin";
   return "/panel/ev-sahibi";
 }

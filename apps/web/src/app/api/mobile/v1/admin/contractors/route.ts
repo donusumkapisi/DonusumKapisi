@@ -12,8 +12,11 @@ export async function GET(request: Request) {
     }
 
     const profiles = await prisma.contractorProfile.findMany({
-      include: { user: { select: { name: true, email: true } } },
-      orderBy: [{ verified: "asc" }, { updatedAt: "desc" }],
+      include: {
+        user: { select: { name: true, email: true } },
+        documents: { select: { url: true } },
+      },
+      orderBy: [{ submittedAt: "asc" }, { updatedAt: "desc" }],
     });
 
     return NextResponse.json({

@@ -421,7 +421,8 @@
     "ctaContractorLogin": "Contractor Login / Offer",
     "ctaHomeownerListing": "Homeowner — Post Listing",
     "emailSubject": "About listing {number}",
-    "emailBody": "Hello, I would like information about listing {number}."
+    "emailBody": "Hello, I would like information about listing {number}.",
+    "errorNotVerified": "Your contractor documents must be approved before you can make an offer. Complete them from your panel."
   },
   "listingWizard": {
     "authGateEyebrow": "Post a Listing",
@@ -588,7 +589,6 @@
     "notificationPrefsSuccess": "Your preferences have been saved.",
     "contractorProfileCompanyName": "Company Name",
     "contractorProfileAbout": "About",
-    "contractorProfileDocumentsLabel": "Upload Documents (tax certificate, trade registry, etc.)",
     "contractorProfileSuccess": "Your profile has been updated.",
     "documentAlt": "Document",
     "portfolioAdding": "Adding…",
@@ -674,7 +674,14 @@
     "actionApprove": "Approve",
     "actionReject": "Reject",
     "actionClose": "Close",
-    "actionReapprove": "Re-approve"
+    "actionReapprove": "Re-approve",
+    "verificationsSubtitle": "Review contractor applications document by document. The account is verified automatically once every document is approved.",
+    "verificationsQueue": "{count} applications waiting for review",
+    "verificationsReviewButton": "Review applications",
+    "statApprovedContractors": "Verified contractors",
+    "statTotalContractors": "Total applications",
+    "submittedAtLabel": "Submitted: {date}",
+    "backToAdmin": "Back to admin panel"
   },
   "panelAnalytics": {
     "title": "Analytics",
@@ -761,5 +768,70 @@
     "kvkkBody1": "Veri sorumlusu: DönüşümKapısı. İşlenen veriler; kimlik, iletişim, hesap ve ilan/teklif içerikleridir.",
     "kvkkBody2": "Amaçlar: üyelik, ilan yayınlama, teklif yönetimi, doğrulama, randevu organizasyonu ve yasal yükümlülükler.",
     "kvkkBody3": "Başvuru haklarınız için info@donusumkapisi.com üzerinden bize ulaşabilirsiniz."
+  },
+  "contractorDocs": {
+    "eyebrow": "Document verification",
+    "onboardingEyebrow": "Sign-up · Step 2/2",
+    "title": "Upload your contractor documents",
+    "subtitle": "Before you can submit offers to homeowners we need to verify your authorisation number and the documents below. Review usually takes one business day.",
+    "companyNameLabel": "Company Name",
+    "companyNamePlaceholder": "e.g. Kapı İnşaat Ltd. Şti.",
+    "mybnLabel": "Contractor Authorisation Number (MYBN)",
+    "mybnHint": "The 16-digit number registered to your company in YAMBİS.",
+    "mybnShort": "MYBN",
+    "mybnLookup": "Look up in YAMBİS",
+    "mybnMissing": "No MYBN provided.",
+    "formatHint": "Each document may be PDF, JPG, PNG or WEBP; up to 10MB per file.",
+    "requiredBadge": "Required",
+    "willReplace": "The new file replaces the current document and returns it to review.",
+    "submitButton": "Submit documents",
+    "submitButtonPending": "Submitting…",
+    "submitSuccess": "Your documents are now under review.",
+    "privacyNote": "Your documents are shared only with the DönüşümKapısı verification team.",
+    "backToPanel": "Back to panel",
+    "panelSectionTitle": "Document verification",
+    "panelComplete": "Complete documents",
+    "panelReview": "View documents",
+    "approveAll": "Approve all",
+    "rejectApplication": "Reject application",
+    "confirmReject": "Reject",
+    "rejectNotePlaceholder": "Write a reason (shown to the contractor)",
+    "adminMissingDocuments": "Missing documents: {list}",
+    "errorMustBeContractor": "This action is only for contractor accounts.",
+    "errorFormInvalid": "The form is invalid.",
+    "errorMissingDocuments": "You still need to upload: {list}",
+    "errorMybnInUse": "This authorisation number is already registered to another account.",
+    "type": {
+      "VERGI_LEVHASI": "Tax Certificate",
+      "TICARET_SICIL_GAZETESI": "Trade Registry Gazette",
+      "TICARET_ODASI_KAYDI": "Chamber of Commerce Registration",
+      "IMZA_SIRKULERI": "Signature Circular",
+      "FAALIYET_BELGESI": "Certificate of Activity"
+    },
+    "hint": {
+      "VERGI_LEVHASI": "Current year, approved by the tax office.",
+      "TICARET_SICIL_GAZETESI": "Incorporation notice and the latest amendment, if any.",
+      "TICARET_ODASI_KAYDI": "Chamber registration issued within the last 6 months.",
+      "IMZA_SIRKULERI": "Notarised circular for the people authorised to represent the company.",
+      "FAALIYET_BELGESI": "Current certificate of activity from the chamber."
+    },
+    "status": {
+      "INCOMPLETE": "Incomplete",
+      "PENDING": "In review",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected"
+    },
+    "bannerTitle": {
+      "INCOMPLETE": "Your documents are incomplete",
+      "PENDING": "Your documents are in review",
+      "APPROVED": "Your verification is complete",
+      "REJECTED": "Your documents need corrections"
+    },
+    "bannerBody": {
+      "INCOMPLETE": "Until all six items are provided your application is not reviewed and you cannot make offers.",
+      "PENDING": "Our team is checking your documents. You can make offers once they are approved.",
+      "APPROVED": "You can now make offers on published listings and carry the verified badge.",
+      "REJECTED": "Correct the documents flagged below and upload them again."
+    }
   }
 }
