@@ -832,6 +832,9 @@
       "PENDING": "Ekibimiz evraklarınızı kontrol ediyor. Onaylandığında teklif vermeye başlayabilirsiniz.",
       "APPROVED": "Artık yayındaki ilanlara teklif verebilir ve profilinizde onay rozetini taşırsınız.",
       "REJECTED": "Aşağıda belirtilen evrakları düzeltip yeniden yükleyin."
-    }
+    },
+    "uploadedTitle": "Yüklenen belgeler",
+    "uploadedCount": "{done}/{total} tamamlandı",
+    "missingStatus": "Eksik"
   }
 }

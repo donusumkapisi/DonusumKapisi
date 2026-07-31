@@ -832,6 +832,9 @@
       "PENDING": "Our team is checking your documents. You can make offers once they are approved.",
       "APPROVED": "You can now make offers on published listings and carry the verified badge.",
       "REJECTED": "Correct the documents flagged below and upload them again."
-    }
+    },
+    "uploadedTitle": "Uploaded documents",
+    "uploadedCount": "{done}/{total} completed",
+    "missingStatus": "Missing"
   }
 }

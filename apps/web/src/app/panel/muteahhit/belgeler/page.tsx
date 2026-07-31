@@ -11,6 +11,7 @@ import {
   type ExistingDocument,
 } from "@/components/panel/contractor-documents-form";
 import { VerificationStatusBanner } from "@/components/panel/verification-status-banner";
+import { DocumentChecklist } from "@/components/panel/document-checklist";
 
 export default async function ContractorDocumentsPage() {
   const session = await auth();
@@ -44,8 +45,14 @@ export default async function ContractorDocumentsPage() {
         <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-muted">{t("subtitle")}</p>
       </FadeIn>
 
-      <FadeIn delay={0.05} className="mt-6">
+      <FadeIn delay={0.05} className="mt-6 grid gap-4 sm:grid-cols-2">
         <VerificationStatusBanner status={status} note={profile?.verificationNote} />
+        <DocumentChecklist
+          documents={documents.map(({ type, status: documentStatus }) => ({
+            type,
+            status: documentStatus,
+          }))}
+        />
       </FadeIn>
 
       <FadeIn delay={0.08} className="mt-6">

@@ -20,6 +20,7 @@ import { NotificationPreferencesForm } from "@/components/panel/notification-pre
 import { formatPriceRange } from "@/lib/listings";
 import { getContractorVerification } from "@/lib/contractor-verification";
 import { VerificationStatusBanner } from "@/components/panel/verification-status-banner";
+import { DocumentChecklist } from "@/components/panel/document-checklist";
 import { listPortfolioItems } from "@/lib/portfolio";
 import { listSavedSearches } from "@/lib/saved-searches";
 import { getNotificationPreferences } from "@/lib/notification-preferences";
@@ -91,6 +92,15 @@ export default async function ContractorPanelPage() {
           status={verificationStatus}
           note={profile?.verificationNote}
           className="mt-4"
+        />
+        <DocumentChecklist
+          documents={
+            profile?.documents.map((document) => ({
+              type: document.type,
+              status: document.status,
+            })) ?? []
+          }
+          className="mt-3"
         />
         <div className="mt-3">
           <Button asChild variant={verificationStatus === "APPROVED" ? "outline" : "cta"} size="sm">
