@@ -1,17 +1,11 @@
 import { useMemo } from "react";
 import { Modal, ScrollView, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import type { OfferStatus } from "@donusum-kapisi/shared";
 import { formatPriceRange, type Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
 import { Button } from "@/src/components/button";
-
-const OFFER_STATUS_LABELS: Record<OfferStatus, string> = {
-  PENDING: "Yeni Teklif",
-  INTERESTED: "İlgileniliyor",
-  DECLINED: "İlgilenilmedi",
-  WITHDRAWN: "Geri Çekildi",
-};
 
 export type OfferForComparison = {
   id: string;
@@ -33,28 +27,33 @@ export function OfferComparisonModal({
   onClose: () => void;
 }) {
   const colors = useColors();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(colors), [colors]);
 
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.container}>
-        <Text style={styles.title}>Teklifleri Karşılaştır</Text>
+        <Text style={styles.title}>{t("offerComparison.title")}</Text>
         <ScrollView contentContainerStyle={{ gap: 10 }}>
           {offers.map((offer) => (
             <View key={offer.id} style={styles.card}>
-              <Text style={styles.contractorName}>{offer.contractorName ?? "Müteahhit"}</Text>
+              <Text style={styles.contractorName}>
+                {offer.contractorName ?? t("panel.defaultContractorName")}
+              </Text>
               <View style={styles.row}>
-                <Text style={styles.label}>Teklif</Text>
+                <Text style={styles.label}>{t("offerComparison.offerLabel")}</Text>
                 <Text style={styles.value}>{formatPriceRange(offer.priceMin, offer.priceMax)}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Süre</Text>
+                <Text style={styles.label}>{t("offerComparison.durationLabel")}</Text>
                 <Text style={styles.value}>
-                  {offer.durationMonths ? `${offer.durationMonths} ay` : "—"}
+                  {offer.durationMonths
+                    ? t("offerComparison.durationMonths", { count: offer.durationMonths })
+                    : "—"}
                 </Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Puan</Text>
+                <Text style={styles.label}>{t("offerComparison.ratingLabel")}</Text>
                 {offer.rating.reviewCount > 0 ? (
                   <View style={styles.ratingRow}>
                     <Ionicons name="star" size={13} color={colors.ctaOrange} />
@@ -67,13 +66,13 @@ export function OfferComparisonModal({
                 )}
               </View>
               <View style={styles.row}>
-                <Text style={styles.label}>Durum</Text>
-                <Text style={styles.value}>{OFFER_STATUS_LABELS[offer.status]}</Text>
+                <Text style={styles.label}>{t("offerComparison.statusLabel")}</Text>
+                <Text style={styles.value}>{t(`status.offer.${offer.status}`)}</Text>
               </View>
             </View>
           ))}
         </ScrollView>
-        <Button title="Kapat" variant="outline" onPress={onClose} />
+        <Button title={t("offerComparison.close")} variant="outline" onPress={onClose} />
       </View>
     </Modal>
   );

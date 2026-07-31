@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useFocusEffect } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import { api } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
@@ -11,6 +12,7 @@ type Analytics = Awaited<ReturnType<typeof api.getAdminAnalytics>>;
 
 export function AdminAnalyticsSection() {
   const colors = useColors();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
 
@@ -35,22 +37,24 @@ export function AdminAnalyticsSection() {
   const maxTrendValue = Math.max(1, ...trends.map((t) => Math.max(t.listings, t.offers)));
 
   return (
-    <SectionCard title="Analitik">
+    <SectionCard title={t("adminAnalytics.title")}>
       <View style={styles.statsGrid}>
-        <StatBox label="Toplam İlan" value={stats.totalListings} />
-        <StatBox label="Yayında" value={stats.approvedListings} />
-        <StatBox label="Toplam Teklif" value={stats.totalOffers} />
-        <StatBox label="Dönüşüm" value={`%${stats.conversionRate.toFixed(1)}`} />
-        <StatBox label="Müteahhit" value={stats.totalContractors} />
-        <StatBox label="Doğrulanmış" value={stats.verifiedContractors} />
+        <StatBox label={t("adminAnalytics.totalListings")} value={stats.totalListings} />
+        <StatBox label={t("adminAnalytics.live")} value={stats.approvedListings} />
+        <StatBox label={t("adminAnalytics.totalOffers")} value={stats.totalOffers} />
+        <StatBox label={t("adminAnalytics.conversion")} value={`%${stats.conversionRate.toFixed(1)}`} />
+        <StatBox label={t("adminAnalytics.contractors")} value={stats.totalContractors} />
+        <StatBox label={t("adminAnalytics.verified")} value={stats.verifiedContractors} />
       </View>
 
       {topContractors.length > 0 && (
         <View style={styles.topSection}>
-          <Text style={styles.subheading}>En Yüksek Puanlı Müteahhitler</Text>
+          <Text style={styles.subheading}>{t("adminAnalytics.topContractors")}</Text>
           {topContractors.map((contractor) => (
             <View key={contractor.contractorId} style={styles.topRow}>
-              <Text style={styles.topName}>{contractor.name ?? "Müteahhit"}</Text>
+              <Text style={styles.topName}>
+                {contractor.name ?? t("panel.defaultContractorName")}
+              </Text>
               <View style={styles.topRatingRow}>
                 <Ionicons name="star" size={12} color={colors.ctaOrange} />
                 <Text style={styles.topRating}>
@@ -63,7 +67,7 @@ export function AdminAnalyticsSection() {
       )}
 
       <View style={styles.trendSection}>
-        <Text style={styles.subheading}>Aylık Trend</Text>
+        <Text style={styles.subheading}>{t("adminAnalytics.monthlyTrend")}</Text>
         <View style={styles.trendChart}>
           {trends.map((bucket) => (
             <View key={bucket.key} style={styles.trendColumn}>

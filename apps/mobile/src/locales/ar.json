@@ -12,7 +12,8 @@
     "ayarlar": "الإعدادات"
   },
   "nav": {
-    "listingDetailTitle": "تفاصيل الإعلان"
+    "listingDetailTitle": "تفاصيل الإعلان",
+    "blogPostTitle": "مقال"
   },
   "vitrin": {
     "eyebrow": "DÖNÜŞÜM KAPISI",
@@ -276,5 +277,83 @@
     "sourceMissingKey": "OPENAI_API_KEY مفقود — تم استخدام الحساب المحلي",
     "errorValidation": "يرجى تعبئة جميع الحقول بشكل صحيح.",
     "errorFailed": "تعذر الحصول على تقدير. حاول مرة أخرى لاحقاً."
+  },
+  "appointment": {
+    "discoveryLabel": "زيارة الموقع: {{datetime}}",
+    "statusPROPOSED": "بانتظار التأكيد",
+    "statusCONFIRMED": "مؤكد",
+    "statusCANCELLED": "ملغى",
+    "addToCalendar": "إضافة إلى التقويم",
+    "confirm": "تأكيد",
+    "cancel": "إلغاء",
+    "proposeButton": "تحديد موعد",
+    "dateLabel": "التاريخ (YYYY-MM-DD)",
+    "timeLabel": "الوقت (HH:MM)",
+    "locationLabel": "الموقع (اختياري)",
+    "submit": "إرسال",
+    "dismiss": "تجاهل",
+    "errorDateTimeRequired": "أدخل التاريخ والوقت (مثال: 2026-08-15، 14:30).",
+    "errorProposeFailed": "تعذّر تحديد الموعد. تحقق من صيغة التاريخ/الوقت."
+  },
+  "review": {
+    "commentLabel": "تعليق (اختياري)",
+    "commentPlaceholder": "شاركنا تجربتك",
+    "submit": "إرسال",
+    "error": "تعذّر إرسال التقييم."
+  },
+  "offerComparison": {
+    "title": "مقارنة العروض",
+    "offerLabel": "العرض",
+    "durationLabel": "المدة",
+    "ratingLabel": "التقييم",
+    "statusLabel": "الحالة",
+    "durationMonths": "{{count}} شهرًا",
+    "close": "إغلاق"
+  },
+  "portfolio": {
+    "title": "أعمالي السابقة",
+    "projectTitleLabel": "عنوان المشروع",
+    "descriptionLabel": "الوصف (اختياري)",
+    "beforePhoto": "صورة قبل",
+    "afterPhoto": "صورة بعد",
+    "addProject": "إضافة مشروع"
+  },
+  "savedSearches": {
+    "title": "عمليات البحث المحفوظة",
+    "allListings": "كل الإعلانات",
+    "maxAge": "حتى {{age}} سنة",
+    "minSqm": "{{sqm}} م² على الأقل"
+  },
+  "notifications": {
+    "title": "تفضيلات الإشعارات",
+    "listingStatus": "إشعارات قبول/رفض الإعلان",
+    "offers": "إشعارات العروض",
+    "appointments": "إشعارات المواعيد",
+    "savedSearch": "تطابق عمليات البحث المحفوظة"
+  },
+  "adminAnalytics": {
+    "title": "التحليلات",
+    "totalListings": "إجمالي الإعلانات",
+    "live": "منشور",
+    "totalOffers": "إجمالي العروض",
+    "conversion": "التحويل",
+    "contractors": "المقاولون",
+    "verified": "موثّق",
+    "topContractors": "أعلى المقاولين تقييمًا",
+    "monthlyTrend": "الاتجاه الشهري"
+  },
+  "contractorProfile": {
+    "fallbackName": "مقاول",
+    "notFound": "لم يتم العثور على الملف الشخصي.",
+    "verified": "موثّق",
+    "reviewCount": "({{count}} تقييم)",
+    "noRatingYet": "لا توجد تقييمات بعد",
+    "aboutTitle": "نبذة",
+    "completedProjects": "المشاريع المنجزة",
+    "before": "قبل",
+    "after": "بعد",
+    "reviewsTitle": "التقييمات",
+    "noReviews": "لم يتم إضافة أي تقييم بعد.",
+    "defaultReviewerName": "مالك العقار"
   }
 }

@@ -3,6 +3,7 @@ import { useFocusEffect } from "expo-router";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import type { PortfolioItemDTO } from "@donusum-kapisi/shared";
 import { api } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
@@ -13,6 +14,7 @@ import { Button } from "@/src/components/button";
 
 export function PortfolioManager() {
   const colors = useColors();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [items, setItems] = useState<PortfolioItemDTO[]>([]);
   const [title, setTitle] = useState("");
@@ -89,7 +91,7 @@ export function PortfolioManager() {
   }
 
   return (
-    <SectionCard title="Portföyüm">
+    <SectionCard title={t("portfolio.title")}>
       {items.map((item) => (
         <View key={item.id} style={styles.row}>
           <View style={styles.thumbRow}>
@@ -111,8 +113,13 @@ export function PortfolioManager() {
       ))}
 
       <View style={styles.form}>
-        <TextField label="Proje Başlığı" value={title} onChangeText={setTitle} />
-        <TextField label="Açıklama (opsiyonel)" value={description} onChangeText={setDescription} multiline />
+        <TextField label={t("portfolio.projectTitleLabel")} value={title} onChangeText={setTitle} />
+        <TextField
+          label={t("portfolio.descriptionLabel")}
+          value={description}
+          onChangeText={setDescription}
+          multiline
+        />
 
         <View style={styles.pickRow}>
           <Pressable style={styles.pickButton} onPress={() => pickImage(setBeforeImage)}>
@@ -121,7 +128,7 @@ export function PortfolioManager() {
             ) : (
               <>
                 <Ionicons name="image-outline" size={18} color={colors.turquoise} />
-                <Text style={styles.pickButtonText}>Önce Fotoğrafı</Text>
+                <Text style={styles.pickButtonText}>{t("portfolio.beforePhoto")}</Text>
               </>
             )}
           </Pressable>
@@ -131,13 +138,19 @@ export function PortfolioManager() {
             ) : (
               <>
                 <Ionicons name="image-outline" size={18} color={colors.turquoise} />
-                <Text style={styles.pickButtonText}>Sonra Fotoğrafı</Text>
+                <Text style={styles.pickButtonText}>{t("portfolio.afterPhoto")}</Text>
               </>
             )}
           </Pressable>
         </View>
 
-        <Button title="Projeyi Ekle" size="sm" icon="add" loading={isSaving} onPress={submit} />
+        <Button
+          title={t("portfolio.addProject")}
+          size="sm"
+          icon="add"
+          loading={isSaving}
+          onPress={submit}
+        />
       </View>
     </SectionCard>
   );

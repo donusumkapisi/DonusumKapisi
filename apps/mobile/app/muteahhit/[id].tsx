@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import { api, type PublicContractorProfile } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
@@ -11,6 +12,7 @@ import { SectionCard } from "@/src/components/section-card";
 export default function ContractorProfileScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
+  const { t } = useTranslation();
   const colors = useColors();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [profile, setProfile] = useState<PublicContractorProfile | null>(null);
@@ -37,7 +39,7 @@ export default function ContractorProfileScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.paper }}>
       <PageHero
-        title={profile?.name ?? "Müteahhit"}
+        title={profile?.name ?? t("contractorProfile.fallbackName")}
         left={
           <Pressable onPress={() => router.back()} style={styles.backButton}>
             <Ionicons name="chevron-back" size={22} color={colors.onDark} />
@@ -48,14 +50,14 @@ export default function ContractorProfileScreen() {
       {isLoading ? (
         <ActivityIndicator style={{ marginTop: 32 }} color={colors.turquoise} />
       ) : !profile ? (
-        <Text style={styles.message}>Profil bulunamadı.</Text>
+        <Text style={styles.message}>{t("contractorProfile.notFound")}</Text>
       ) : (
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.summaryRow}>
             {profile.profile?.verified && (
               <View style={styles.verifiedBadge}>
                 <Ionicons name="checkmark-circle" size={14} color={colors.turquoise} />
-                <Text style={styles.verifiedText}>Doğrulanmış</Text>
+                <Text style={styles.verifiedText}>{t("contractorProfile.verified")}</Text>
               </View>
             )}
             {profile.ratingSummary.reviewCount > 0 ? (
@@ -65,22 +67,24 @@ export default function ContractorProfileScreen() {
                   {profile.ratingSummary.averageRating?.toFixed(1)}
                 </Text>
                 <Text style={styles.ratingCount}>
-                  ({profile.ratingSummary.reviewCount} değerlendirme)
+                  {t("contractorProfile.reviewCount", {
+                    count: profile.ratingSummary.reviewCount,
+                  })}
                 </Text>
               </View>
             ) : (
-              <Text style={styles.ratingCount}>Henüz değerlendirme yok</Text>
+              <Text style={styles.ratingCount}>{t("contractorProfile.noRatingYet")}</Text>
             )}
           </View>
 
           {profile.profile?.about && (
-            <SectionCard title="Hakkında">
+            <SectionCard title={t("contractorProfile.aboutTitle")}>
               <Text style={styles.about}>{profile.profile.about}</Text>
             </SectionCard>
           )}
 
           {profile.portfolio.length > 0 && (
-            <SectionCard title="Tamamlanan Projeler">
+            <SectionCard title={t("contractorProfile.completedProjects")}>
               {profile.portfolio.map((item) => (
                 <View key={item.id} style={styles.portfolioItem}>
                   <Text style={styles.portfolioTitle}>{item.title}</Text>
@@ -92,13 +96,17 @@ export default function ContractorProfileScreen() {
                       {item.beforeImageUrl && (
                         <View style={styles.portfolioImageWrap}>
                           <Image source={{ uri: item.beforeImageUrl }} style={styles.portfolioImage} />
-                          <Text style={styles.portfolioImageLabel}>Önce</Text>
+                          <Text style={styles.portfolioImageLabel}>
+                            {t("contractorProfile.before")}
+                          </Text>
                         </View>
                       )}
                       {item.afterImageUrl && (
                         <View style={styles.portfolioImageWrap}>
                           <Image source={{ uri: item.afterImageUrl }} style={styles.portfolioImage} />
-                          <Text style={styles.portfolioImageLabel}>Sonra</Text>
+                          <Text style={styles.portfolioImageLabel}>
+                            {t("contractorProfile.after")}
+                          </Text>
                         </View>
                       )}
                     </View>
@@ -108,9 +116,9 @@ export default function ContractorProfileScreen() {
             </SectionCard>
           )}
 
-          <SectionCard title="Değerlendirmeler">
+          <SectionCard title={t("contractorProfile.reviewsTitle")}>
             {profile.reviews.length === 0 ? (
-              <Text style={styles.empty}>Henüz değerlendirme yapılmamış.</Text>
+              <Text style={styles.empty}>{t("contractorProfile.noReviews")}</Text>
             ) : (
               profile.reviews.map((review) => (
                 <View key={review.id} style={styles.review}>
@@ -125,7 +133,9 @@ export default function ContractorProfileScreen() {
                         />
                       ))}
                     </View>
-                    <Text style={styles.reviewerName}>{review.reviewerName ?? "Ev sahibi"}</Text>
+                    <Text style={styles.reviewerName}>
+                      {review.reviewerName ?? t("contractorProfile.defaultReviewerName")}
+                    </Text>
                   </View>
                   {review.comment && <Text style={styles.reviewComment}>{review.comment}</Text>}
                 </View>

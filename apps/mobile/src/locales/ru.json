@@ -12,7 +12,8 @@
     "ayarlar": "Настройки"
   },
   "nav": {
-    "listingDetailTitle": "Детали объявления"
+    "listingDetailTitle": "Детали объявления",
+    "blogPostTitle": "Статья"
   },
   "vitrin": {
     "eyebrow": "DÖNÜŞÜM KAPISI",
@@ -276,5 +277,83 @@
     "sourceMissingKey": "OPENAI_API_KEY отсутствует — использован локальный расчёт",
     "errorValidation": "Заполните все поля корректно.",
     "errorFailed": "Не удалось получить оценку. Попробуйте позже."
+  },
+  "appointment": {
+    "discoveryLabel": "Осмотр объекта: {{datetime}}",
+    "statusPROPOSED": "Ожидает подтверждения",
+    "statusCONFIRMED": "Подтверждено",
+    "statusCANCELLED": "Отменено",
+    "addToCalendar": "Добавить в календарь",
+    "confirm": "Подтвердить",
+    "cancel": "Отменить",
+    "proposeButton": "Назначить встречу",
+    "dateLabel": "Дата (ГГГГ-ММ-ДД)",
+    "timeLabel": "Время (ЧЧ:ММ)",
+    "locationLabel": "Место (необязательно)",
+    "submit": "Отправить",
+    "dismiss": "Отмена",
+    "errorDateTimeRequired": "Укажите дату и время (например, 2026-08-15, 14:30).",
+    "errorProposeFailed": "Не удалось назначить встречу. Проверьте формат даты и времени."
+  },
+  "review": {
+    "commentLabel": "Комментарий (необязательно)",
+    "commentPlaceholder": "Поделитесь своим опытом",
+    "submit": "Отправить",
+    "error": "Не удалось отправить отзыв."
+  },
+  "offerComparison": {
+    "title": "Сравнить предложения",
+    "offerLabel": "Предложение",
+    "durationLabel": "Срок",
+    "ratingLabel": "Рейтинг",
+    "statusLabel": "Статус",
+    "durationMonths": "{{count}} мес.",
+    "close": "Закрыть"
+  },
+  "portfolio": {
+    "title": "Мое портфолио",
+    "projectTitleLabel": "Название проекта",
+    "descriptionLabel": "Описание (необязательно)",
+    "beforePhoto": "Фото «до»",
+    "afterPhoto": "Фото «после»",
+    "addProject": "Добавить проект"
+  },
+  "savedSearches": {
+    "title": "Мои сохраненные поиски",
+    "allListings": "Все объявления",
+    "maxAge": "до {{age}} лет",
+    "minSqm": "не менее {{sqm}} м²"
+  },
+  "notifications": {
+    "title": "Настройки уведомлений",
+    "listingStatus": "Уведомления об одобрении/отклонении объявления",
+    "offers": "Уведомления о предложениях",
+    "appointments": "Уведомления о встречах",
+    "savedSearch": "Совпадения по сохраненным поискам"
+  },
+  "adminAnalytics": {
+    "title": "Аналитика",
+    "totalListings": "Всего объявлений",
+    "live": "Опубликовано",
+    "totalOffers": "Всего предложений",
+    "conversion": "Конверсия",
+    "contractors": "Подрядчики",
+    "verified": "Проверенные",
+    "topContractors": "Подрядчики с высшим рейтингом",
+    "monthlyTrend": "Динамика по месяцам"
+  },
+  "contractorProfile": {
+    "fallbackName": "Подрядчик",
+    "notFound": "Профиль не найден.",
+    "verified": "Проверен",
+    "reviewCount": "({{count}} отзывов)",
+    "noRatingYet": "Отзывов пока нет",
+    "aboutTitle": "О компании",
+    "completedProjects": "Завершенные проекты",
+    "before": "До",
+    "after": "После",
+    "reviewsTitle": "Отзывы",
+    "noReviews": "Отзывов пока не оставляли.",
+    "defaultReviewerName": "Собственник"
   }
 }

@@ -144,7 +144,7 @@ export function AiPriceEstimateModal({
         unitCount: Number(unitCount),
         buildingAge: Number(buildingAge),
         floorCount: Number(floorCount),
-        locale: language === "en" ? "en" : "tr",
+        locale: language,
       });
 
       const explanation =

@@ -1,18 +1,21 @@
 import { useMemo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import type { AppointmentDTO } from "@donusum-kapisi/shared";
 import { api } from "@/src/lib/api";
 import { downloadAndShareAppointmentIcs } from "@/src/lib/ics";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
+import { useLanguage } from "@/src/lib/i18n-context";
+import { INTL_LOCALES } from "@/src/lib/i18n";
 import { Button } from "@/src/components/button";
 import { StatusBadge, type StatusTone } from "@/src/components/status-badge";
 
-const STATUS_LABELS: Record<AppointmentDTO["status"], { label: string; tone: StatusTone }> = {
-  PROPOSED: { label: "Onay Bekliyor", tone: "warning" },
-  CONFIRMED: { label: "Onaylandı", tone: "positive" },
-  CANCELLED: { label: "İptal Edildi", tone: "neutral" },
+const STATUS_TONES: Record<AppointmentDTO["status"], StatusTone> = {
+  PROPOSED: "warning",
+  CONFIRMED: "positive",
+  CANCELLED: "neutral",
 };
 
 export function AppointmentCard({
@@ -23,11 +26,12 @@ export function AppointmentCard({
   onUpdated: () => void;
 }) {
   const colors = useColors();
+  const { t } = useTranslation();
+  const { language } = useLanguage();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAddingToCalendar, setIsAddingToCalendar] = useState(false);
-  const status = STATUS_LABELS[appointment.status];
-  const formatted = new Date(appointment.scheduledAt).toLocaleString("tr-TR", {
+  const formatted = new Date(appointment.scheduledAt).toLocaleString(INTL_LOCALES[language], {
     dateStyle: "medium",
     timeStyle: "short",
   });
@@ -59,16 +63,19 @@ export function AppointmentCard({
         <Ionicons name="calendar-outline" size={16} color={colors.turquoise} />
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>
-            Keşif randevusu: {formatted}
+            {t("appointment.discoveryLabel", { datetime: formatted })}
             {appointment.location ? ` · ${appointment.location}` : ""}
           </Text>
-          <StatusBadge label={status.label} tone={status.tone} />
+          <StatusBadge
+            label={t(`appointment.status${appointment.status}`)}
+            tone={STATUS_TONES[appointment.status]}
+          />
         </View>
       </View>
       <View style={styles.actions}>
         {appointment.status !== "CANCELLED" && (
           <Button
-            title="Takvime Ekle"
+            title={t("appointment.addToCalendar")}
             size="sm"
             variant="outline"
             icon="calendar-outline"
@@ -79,13 +86,13 @@ export function AppointmentCard({
         {appointment.status === "PROPOSED" && (
           <>
             <Button
-              title="Onayla"
+              title={t("appointment.confirm")}
               size="sm"
               loading={isSubmitting}
               onPress={() => respond("CONFIRMED")}
             />
             <Button
-              title="İptal Et"
+              title={t("appointment.cancel")}
               size="sm"
               variant="outline"
               loading={isSubmitting}

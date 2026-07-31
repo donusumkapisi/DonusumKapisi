@@ -12,7 +12,8 @@
     "ayarlar": "Ayarlar"
   },
   "nav": {
-    "listingDetailTitle": "İlan Detayı"
+    "listingDetailTitle": "İlan Detayı",
+    "blogPostTitle": "Yazı"
   },
   "vitrin": {
     "eyebrow": "DÖNÜŞÜM KAPISI",
@@ -276,5 +277,83 @@
     "sourceMissingKey": "OPENAI_API_KEY yok — yerel hesaplama kullanıldı",
     "errorValidation": "Lütfen tüm alanları doğru doldurun.",
     "errorFailed": "Tahmin alınamadı. Lütfen biraz sonra tekrar deneyin."
+  },
+  "appointment": {
+    "discoveryLabel": "Keşif randevusu: {{datetime}}",
+    "statusPROPOSED": "Onay Bekliyor",
+    "statusCONFIRMED": "Onaylandı",
+    "statusCANCELLED": "İptal Edildi",
+    "addToCalendar": "Takvime Ekle",
+    "confirm": "Onayla",
+    "cancel": "İptal Et",
+    "proposeButton": "Randevu Planla",
+    "dateLabel": "Tarih (YYYY-AA-GG)",
+    "timeLabel": "Saat (SS:DD)",
+    "locationLabel": "Konum (opsiyonel)",
+    "submit": "Gönder",
+    "dismiss": "Vazgeç",
+    "errorDateTimeRequired": "Tarih ve saat girin (örn. 2026-08-15, 14:30).",
+    "errorProposeFailed": "Randevu planlanamadı. Tarih/saat biçimini kontrol edin."
+  },
+  "review": {
+    "commentLabel": "Yorum (opsiyonel)",
+    "commentPlaceholder": "Deneyiminizi paylaşın",
+    "submit": "Gönder",
+    "error": "Değerlendirme gönderilemedi."
+  },
+  "offerComparison": {
+    "title": "Teklifleri Karşılaştır",
+    "offerLabel": "Teklif",
+    "durationLabel": "Süre",
+    "ratingLabel": "Puan",
+    "statusLabel": "Durum",
+    "durationMonths": "{{count}} ay",
+    "close": "Kapat"
+  },
+  "portfolio": {
+    "title": "Portföyüm",
+    "projectTitleLabel": "Proje Başlığı",
+    "descriptionLabel": "Açıklama (opsiyonel)",
+    "beforePhoto": "Önce Fotoğrafı",
+    "afterPhoto": "Sonra Fotoğrafı",
+    "addProject": "Projeyi Ekle"
+  },
+  "savedSearches": {
+    "title": "Kayıtlı Aramalarım",
+    "allListings": "Tüm ilanlar",
+    "maxAge": "en fazla {{age}} yaş",
+    "minSqm": "en az {{sqm}} m²"
+  },
+  "notifications": {
+    "title": "Bildirim Tercihleri",
+    "listingStatus": "İlan onay/red bildirimleri",
+    "offers": "Teklif bildirimleri",
+    "appointments": "Randevu bildirimleri",
+    "savedSearch": "Kayıtlı arama eşleşmeleri"
+  },
+  "adminAnalytics": {
+    "title": "Analitik",
+    "totalListings": "Toplam İlan",
+    "live": "Yayında",
+    "totalOffers": "Toplam Teklif",
+    "conversion": "Dönüşüm",
+    "contractors": "Müteahhit",
+    "verified": "Doğrulanmış",
+    "topContractors": "En Yüksek Puanlı Müteahhitler",
+    "monthlyTrend": "Aylık Trend"
+  },
+  "contractorProfile": {
+    "fallbackName": "Müteahhit",
+    "notFound": "Profil bulunamadı.",
+    "verified": "Doğrulanmış",
+    "reviewCount": "({{count}} değerlendirme)",
+    "noRatingYet": "Henüz değerlendirme yok",
+    "aboutTitle": "Hakkında",
+    "completedProjects": "Tamamlanan Projeler",
+    "before": "Önce",
+    "after": "Sonra",
+    "reviewsTitle": "Değerlendirmeler",
+    "noReviews": "Henüz değerlendirme yapılmamış.",
+    "defaultReviewerName": "Ev sahibi"
   }
 }

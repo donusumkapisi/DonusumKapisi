@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { api } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
@@ -8,6 +9,7 @@ import { TextField } from "@/src/components/text-field";
 
 export function ProposeAppointmentForm({ offerId, onProposed }: { offerId: string; onProposed: () => void }) {
   const colors = useColors();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState("");
@@ -18,7 +20,7 @@ export function ProposeAppointmentForm({ offerId, onProposed }: { offerId: strin
 
   async function submit() {
     if (!date || !time) {
-      setError("Tarih ve saat girin (örn. 2026-08-15, 14:30).");
+      setError(t("appointment.errorDateTimeRequired"));
       return;
     }
     setIsSubmitting(true);
@@ -34,7 +36,7 @@ export function ProposeAppointmentForm({ offerId, onProposed }: { offerId: strin
       setLocation("");
       onProposed();
     } catch {
-      setError("Randevu planlanamadı. Tarih/saat biçimini kontrol edin.");
+      setError(t("appointment.errorProposeFailed"));
     } finally {
       setIsSubmitting(false);
     }
@@ -43,7 +45,7 @@ export function ProposeAppointmentForm({ offerId, onProposed }: { offerId: strin
   if (!isOpen) {
     return (
       <Button
-        title="Randevu Planla"
+        title={t("appointment.proposeButton")}
         size="sm"
         variant="outline"
         icon="calendar-outline"
@@ -56,17 +58,36 @@ export function ProposeAppointmentForm({ offerId, onProposed }: { offerId: strin
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={{ flex: 1 }}>
-          <TextField label="Tarih (YYYY-AA-GG)" value={date} onChangeText={setDate} placeholder="2026-08-15" />
+          <TextField
+            label={t("appointment.dateLabel")}
+            value={date}
+            onChangeText={setDate}
+            placeholder="2026-08-15"
+          />
         </View>
         <View style={{ flex: 1 }}>
-          <TextField label="Saat (SS:DD)" value={time} onChangeText={setTime} placeholder="14:30" />
+          <TextField
+            label={t("appointment.timeLabel")}
+            value={time}
+            onChangeText={setTime}
+            placeholder="14:30"
+          />
         </View>
       </View>
-      <TextField label="Konum (opsiyonel)" value={location} onChangeText={setLocation} />
+      <TextField
+        label={t("appointment.locationLabel")}
+        value={location}
+        onChangeText={setLocation}
+      />
       {error && <Text style={styles.error}>{error}</Text>}
       <View style={styles.row}>
-        <Button title="Gönder" size="sm" loading={isSubmitting} onPress={submit} />
-        <Button title="Vazgeç" size="sm" variant="outline" onPress={() => setIsOpen(false)} />
+        <Button title={t("appointment.submit")} size="sm" loading={isSubmitting} onPress={submit} />
+        <Button
+          title={t("appointment.dismiss")}
+          size="sm"
+          variant="outline"
+          onPress={() => setIsOpen(false)}
+        />
       </View>
     </View>
   );

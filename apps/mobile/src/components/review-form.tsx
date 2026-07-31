@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useTranslation } from "react-i18next";
 import { api } from "@/src/lib/api";
 import type { Colors } from "@/src/lib/theme";
 import { useColors } from "@/src/lib/theme-context";
@@ -9,6 +10,7 @@ import { TextField } from "@/src/components/text-field";
 
 export function ReviewForm({ offerId, onSubmitted }: { offerId: string; onSubmitted: () => void }) {
   const colors = useColors();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(colors), [colors]);
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
@@ -22,7 +24,7 @@ export function ReviewForm({ offerId, onSubmitted }: { offerId: string; onSubmit
       await api.submitReview(offerId, { rating, comment: comment || undefined });
       onSubmitted();
     } catch {
-      setError("Değerlendirme gönderilemedi.");
+      setError(t("review.error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -42,14 +44,20 @@ export function ReviewForm({ offerId, onSubmitted }: { offerId: string; onSubmit
         ))}
       </View>
       <TextField
-        label="Yorum (opsiyonel)"
+        label={t("review.commentLabel")}
         value={comment}
         onChangeText={setComment}
         multiline
-        placeholder="Deneyiminizi paylaşın"
+        placeholder={t("review.commentPlaceholder")}
       />
       {error && <Text style={styles.error}>{error}</Text>}
-      <Button title="Gönder" size="sm" icon="send-outline" loading={isSubmitting} onPress={submit} />
+      <Button
+        title={t("review.submit")}
+        size="sm"
+        icon="send-outline"
+        loading={isSubmitting}
+        onPress={submit}
+      />
     </View>
   );
 }

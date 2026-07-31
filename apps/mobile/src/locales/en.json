@@ -12,7 +12,8 @@
     "ayarlar": "Settings"
   },
   "nav": {
-    "listingDetailTitle": "Listing Details"
+    "listingDetailTitle": "Listing Details",
+    "blogPostTitle": "Post"
   },
   "vitrin": {
     "eyebrow": "DÖNÜŞÜM KAPISI",
@@ -276,5 +277,83 @@
     "sourceMissingKey": "OPENAI_API_KEY missing — used local calculation",
     "errorValidation": "Please fill in all fields correctly.",
     "errorFailed": "Could not get an estimate. Please try again shortly."
+  },
+  "appointment": {
+    "discoveryLabel": "Site visit: {{datetime}}",
+    "statusPROPOSED": "Awaiting Confirmation",
+    "statusCONFIRMED": "Confirmed",
+    "statusCANCELLED": "Cancelled",
+    "addToCalendar": "Add to Calendar",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "proposeButton": "Schedule Appointment",
+    "dateLabel": "Date (YYYY-MM-DD)",
+    "timeLabel": "Time (HH:MM)",
+    "locationLabel": "Location (optional)",
+    "submit": "Submit",
+    "dismiss": "Discard",
+    "errorDateTimeRequired": "Enter a date and time (e.g. 2026-08-15, 14:30).",
+    "errorProposeFailed": "The appointment could not be scheduled. Check the date/time format."
+  },
+  "review": {
+    "commentLabel": "Comment (optional)",
+    "commentPlaceholder": "Share your experience",
+    "submit": "Submit",
+    "error": "The review could not be submitted."
+  },
+  "offerComparison": {
+    "title": "Compare Offers",
+    "offerLabel": "Offer",
+    "durationLabel": "Duration",
+    "ratingLabel": "Rating",
+    "statusLabel": "Status",
+    "durationMonths": "{{count}} months",
+    "close": "Close"
+  },
+  "portfolio": {
+    "title": "My Portfolio",
+    "projectTitleLabel": "Project Title",
+    "descriptionLabel": "Description (optional)",
+    "beforePhoto": "Before Photo",
+    "afterPhoto": "After Photo",
+    "addProject": "Add Project"
+  },
+  "savedSearches": {
+    "title": "My Saved Searches",
+    "allListings": "All listings",
+    "maxAge": "up to {{age}} years",
+    "minSqm": "at least {{sqm}} m²"
+  },
+  "notifications": {
+    "title": "Notification Preferences",
+    "listingStatus": "Listing approval/rejection notifications",
+    "offers": "Offer notifications",
+    "appointments": "Appointment notifications",
+    "savedSearch": "Saved search matches"
+  },
+  "adminAnalytics": {
+    "title": "Analytics",
+    "totalListings": "Total Listings",
+    "live": "Live",
+    "totalOffers": "Total Offers",
+    "conversion": "Conversion",
+    "contractors": "Contractors",
+    "verified": "Verified",
+    "topContractors": "Top-Rated Contractors",
+    "monthlyTrend": "Monthly Trend"
+  },
+  "contractorProfile": {
+    "fallbackName": "Contractor",
+    "notFound": "Profile not found.",
+    "verified": "Verified",
+    "reviewCount": "({{count}} reviews)",
+    "noRatingYet": "No reviews yet",
+    "aboutTitle": "About",
+    "completedProjects": "Completed Projects",
+    "before": "Before",
+    "after": "After",
+    "reviewsTitle": "Reviews",
+    "noReviews": "No reviews have been left yet.",
+    "defaultReviewerName": "Homeowner"
   }
 }

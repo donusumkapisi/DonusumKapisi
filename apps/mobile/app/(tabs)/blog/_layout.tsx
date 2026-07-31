@@ -1,8 +1,10 @@
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { useColors } from "@/src/lib/theme-context";
 
 export default function BlogLayout() {
   const colors = useColors();
+  const { t } = useTranslation();
   return (
     <Stack
       screenOptions={{
@@ -13,8 +15,8 @@ export default function BlogLayout() {
         contentStyle: { backgroundColor: colors.paper },
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Blog" }} />
-      <Stack.Screen name="[slug]" options={{ title: "Yazı" }} />
+      <Stack.Screen name="index" options={{ title: t("tabs.blog") }} />
+      <Stack.Screen name="[slug]" options={{ title: t("nav.blogPostTitle") }} />
     </Stack>
   );
 }
