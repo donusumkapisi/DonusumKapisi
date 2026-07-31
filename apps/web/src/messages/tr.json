@@ -332,6 +332,8 @@
     "roleContractorTitle": "Müteahhidim",
     "roleContractorBody": "Filtrelenmiş kentsel dönüşüm ilanlarına teklif vermek istiyorum.",
     "nameLabel": "Ad Soyad",
+    "namePlaceholder": "Ad Soyad",
+    "emailPlaceholder": "ornek@email.com",
     "passwordHint": "En az 8 karakter, bir harf ve bir rakam.",
     "signUpButton": "Hesap Oluştur",
     "signUpButtonPending": "Oluşturuluyor…",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Check, Globe } from "lucide-react";
 import { setLocaleAction } from "@/lib/actions/locale";
 import { LOCALE_FLAGS, LOCALE_NAMES, SUPPORTED_LOCALES, type Locale } from "@/i18n/locales";
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function LanguageSwitcher({ invert = false }: { invert?: boolean }) {
   const locale = useLocale() as Locale;
+  const t = useTranslations("common");
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -25,7 +26,7 @@ export function LanguageSwitcher({ invert = false }: { invert?: boolean }) {
         type="button"
         onClick={() => setIsOpen((v) => !v)}
         disabled={isPending}
-        aria-label="Dil seç"
+        aria-label={t("language")}
         className={cn(
           "flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-medium transition-colors",
           invert

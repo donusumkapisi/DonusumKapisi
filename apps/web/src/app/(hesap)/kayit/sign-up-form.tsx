@@ -137,7 +137,13 @@ export function SignUpForm({
           <Label htmlFor="name" className="text-xs font-medium tracking-wide text-ink-muted">
             {t("nameLabel")}
           </Label>
-          <GlowInput id="name" name="name" autoComplete="name" required placeholder="Ad Soyad" />
+          <GlowInput
+            id="name"
+            name="name"
+            autoComplete="name"
+            required
+            placeholder={t("namePlaceholder")}
+          />
         </div>
 
         <div className="space-y-2">
@@ -150,7 +156,7 @@ export function SignUpForm({
             type="email"
             autoComplete="email"
             required
-            placeholder="ornek@email.com"
+            placeholder={t("emailPlaceholder")}
           />
         </div>
 

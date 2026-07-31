@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "ar", "ru"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "ar", "ru", "zh"] as const;
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "tr";
@@ -8,6 +8,7 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   en: "English",
   ar: "العربية",
   ru: "Русский",
+  zh: "简体中文",
 };
 
 export const LOCALE_FLAGS: Record<Locale, string> = {
@@ -15,6 +16,7 @@ export const LOCALE_FLAGS: Record<Locale, string> = {
   en: "🇬🇧",
   ar: "🇸🇦",
   ru: "🇷🇺",
+  zh: "🇨🇳",
 };
 
 export const RTL_LOCALES: ReadonlySet<Locale> = new Set(["ar"]);

@@ -316,6 +316,8 @@
     "roleContractorTitle": "أنا مقاول",
     "roleContractorBody": "أريد تقديم عروض على إعلانات التحول الحضري المفلترة.",
     "nameLabel": "الاسم الكامل",
+    "namePlaceholder": "الاسم واللقب",
+    "emailPlaceholder": "example@email.com",
     "passwordHint": "8 أحرف على الأقل، حرف ورقم واحد.",
     "signUpButton": "إنشاء الحساب",
     "signUpButtonPending": "جارٍ الإنشاء…",

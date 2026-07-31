@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { priceEstimateSchema } from "@donusum-kapisi/shared";
-import { estimatePrice } from "@/lib/price-estimate";
+import { estimatePrice, toPriceEstimateLocale } from "@/lib/price-estimate";
 import { mobileErrorResponse } from "@/lib/mobile-api";
 
 export async function POST(request: Request) {
@@ -13,8 +13,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const localeRaw = typeof body?.locale === "string" ? body.locale : "tr";
-  const locale = localeRaw === "en" ? "en" : "tr";
+  const locale = toPriceEstimateLocale(typeof body?.locale === "string" ? body.locale : "tr");
 
   try {
     const band = await estimatePrice(parsed.data, locale);

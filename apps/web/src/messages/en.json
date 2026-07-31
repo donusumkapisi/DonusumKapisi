@@ -316,6 +316,8 @@
     "roleContractorTitle": "I'm a contractor",
     "roleContractorBody": "I want to bid on filtered urban-renewal listings.",
     "nameLabel": "Full Name",
+    "namePlaceholder": "First and last name",
+    "emailPlaceholder": "example@email.com",
     "passwordHint": "At least 8 characters, one letter and one number.",
     "signUpButton": "Create Account",
     "signUpButtonPending": "Creating…",

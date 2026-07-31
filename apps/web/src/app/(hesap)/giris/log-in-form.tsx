@@ -52,7 +52,7 @@ export function LogInForm({
             type="email"
             autoComplete="email"
             required
-            placeholder="ornek@email.com"
+            placeholder={t("emailPlaceholder")}
           />
         </div>
 

@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { getTranslations } from "next-intl/server";
 import { priceEstimateSchema } from "@donusum-kapisi/shared";
-import { estimatePrice } from "@/lib/price-estimate";
+import { estimatePrice, toPriceEstimateLocale } from "@/lib/price-estimate";
 import { DEFAULT_LOCALE, LOCALE_COOKIE_NAME, isSupportedLocale } from "@/i18n/locales";
 
 export type PriceEstimateActionState =
@@ -48,7 +48,7 @@ export async function estimatePriceAction(
   const stored = cookieStore.get(LOCALE_COOKIE_NAME)?.value;
   const locale = stored && isSupportedLocale(stored) ? stored : DEFAULT_LOCALE;
 
-  const band = await estimatePrice(parsed.data, locale === "en" ? "en" : "tr");
+  const band = await estimatePrice(parsed.data, toPriceEstimateLocale(locale));
   const explanation =
     band.explanation ??
     t("explanation", {

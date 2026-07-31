@@ -316,6 +316,8 @@
     "roleContractorTitle": "Я подрядчик",
     "roleContractorBody": "Хочу подавать предложения по отфильтрованным объектам.",
     "nameLabel": "Полное имя",
+    "namePlaceholder": "Имя и фамилия",
+    "emailPlaceholder": "example@email.com",
     "passwordHint": "Минимум 8 символов, одна буква и одна цифра.",
     "signUpButton": "Создать аккаунт",
     "signUpButtonPending": "Создание…",

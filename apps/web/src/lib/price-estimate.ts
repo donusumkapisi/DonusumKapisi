@@ -13,6 +13,22 @@ export type PriceEstimateResult = {
   source: "openai" | "local";
 };
 
+/**
+ * Site locales the model can write the explanation in. Locales without a
+ * translated prompt fall back to Turkish at the call site.
+ */
+const EXPLANATION_LANGUAGES = {
+  tr: "Turkish",
+  en: "English",
+  zh: "Simplified Chinese",
+} as const;
+
+export type PriceEstimateLocale = keyof typeof EXPLANATION_LANGUAGES;
+
+export function toPriceEstimateLocale(value: string): PriceEstimateLocale {
+  return value in EXPLANATION_LANGUAGES ? (value as PriceEstimateLocale) : "tr";
+}
+
 const llmEstimateSchema = z.object({
   priceMin: z.number().int().positive(),
   priceMax: z.number().int().positive(),
@@ -84,11 +100,11 @@ export function estimatePriceLocally(input: PriceEstimateInput): PriceEstimateRe
 
 async function estimatePriceWithOpenAI(
   input: PriceEstimateInput,
-  locale: "tr" | "en",
+  locale: PriceEstimateLocale,
   apiKey: string
 ): Promise<PriceEstimateResult> {
   const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
-  const language = locale === "en" ? "English" : "Turkish";
+  const language = EXPLANATION_LANGUAGES[locale];
   const midPerSqm = getRebuildCostPerSqm(input.province, input.district);
   const floor = getRebuildCostFloorPerSqm(input.province, input.district);
   const localHint = estimatePriceLocally(input);
@@ -198,7 +214,7 @@ function classifyOpenAIFailure(err: unknown): OpenAIFailureReason {
  */
 export async function estimatePrice(
   input: PriceEstimateInput,
-  locale: "tr" | "en" = "tr"
+  locale: PriceEstimateLocale = "tr"
 ): Promise<PriceEstimateResult & { openAIFailure?: OpenAIFailureReason }> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (!apiKey) {

@@ -10,6 +10,7 @@ const INTL_LOCALES: Record<string, string> = {
   en: "en-US",
   ar: "ar-SA",
   ru: "ru-RU",
+  zh: "zh-CN",
 };
 
 export function AppointmentCard({ appointment }: { appointment: Appointment }) {
