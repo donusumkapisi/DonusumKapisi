@@ -200,7 +200,7 @@ export function ListingWizard() {
                           id="province"
                           value={values.province}
                           onChange={(e) => update("province", e.target.value)}
-                          className="h-11 w-full rounded-lg border border-hairline bg-surface/60 px-3.5 text-sm text-ink outline-none focus-visible:border-clay/50"
+                          className="h-11 w-full rounded-lg border border-hairline bg-surface/60 px-3.5 text-sm text-ink outline-none focus-visible:border-clay/50 [&_option]:bg-paper [&_option]:text-ink"
                         >
                           <option value="">{t("provinceSelectPlaceholder")}</option>
                           {TURKISH_PROVINCES.map((p) => (

@@ -61,6 +61,7 @@
 
 :root {
   /* Açık tema — DönüşümKapısı mobil uygulamasıyla aynı turkuaz/lacivert kimlik */
+  color-scheme: light;
   --paper: #ffffff;
   --surface: #eaf4f7;
   --ink: #163449;
@@ -106,6 +107,7 @@
 
 .dark {
   /* Koyu tema — aynı turkuaz/lacivert kimlik, daha derin bir katmanda */
+  color-scheme: dark;
   --paper: #0b1d27;
   --surface: #12293650;
   --ink: #eef6f8;
@@ -161,6 +163,13 @@
 
   ::selection {
     background: color-mix(in oklch, var(--clay) 30%, transparent);
+    color: var(--ink);
+  }
+
+  /* Native select dropdowns inherit text color but often keep a light panel;
+     pin option colors so dark mode stays readable (esp. Windows Chrome). */
+  select option {
+    background-color: var(--paper);
     color: var(--ink);
   }
 }

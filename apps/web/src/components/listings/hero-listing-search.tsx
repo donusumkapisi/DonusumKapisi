@@ -75,7 +75,7 @@ export function HeroListingSearch() {
               <select
                 value={il}
                 onChange={(e) => setIl(e.target.value)}
-                className="w-full appearance-none bg-transparent text-sm text-ink outline-none"
+                className="w-full appearance-none bg-transparent text-sm text-ink outline-none [&_option]:bg-paper [&_option]:text-ink"
               >
                 <option value="">{t("heroAllProvinces")}</option>
                 {TURKISH_PROVINCES.map((province) => (

@@ -25,7 +25,7 @@ const fieldShell =
   "group relative flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-2.5 transition-colors focus-within:border-clay/45 focus-within:bg-white/[0.07]";
 
 const selectClassName =
-  "w-full appearance-none bg-transparent text-sm text-white outline-none disabled:cursor-not-allowed disabled:opacity-40 [&_option]:bg-surface-strong [&_option]:text-ink";
+  "w-full appearance-none bg-transparent text-sm text-white outline-none disabled:cursor-not-allowed disabled:opacity-40 [&_option]:bg-paper [&_option]:text-ink";
 
 const inputClassName =
   "w-full bg-transparent text-sm text-white outline-none placeholder:text-white/35 disabled:opacity-40";

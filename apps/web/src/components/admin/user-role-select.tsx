@@ -37,7 +37,7 @@ export function UserRoleSelect({
             }
           });
         }}
-        className="h-8 rounded-lg border border-hairline bg-paper px-2 text-xs text-ink outline-none focus-visible:border-clay/40 focus-visible:ring-3 focus-visible:ring-clay/15 disabled:opacity-50"
+        className="h-8 rounded-lg border border-hairline bg-paper px-2 text-xs text-ink outline-none focus-visible:border-clay/40 focus-visible:ring-3 focus-visible:ring-clay/15 disabled:opacity-50 [&_option]:bg-paper [&_option]:text-ink"
       >
         {ROLES.map((value) => (
           <option key={value} value={value}>
