@@ -114,7 +114,7 @@ export function BlogPostForm({
             id="category"
             name="category"
             defaultValue={initialValues?.category ?? ""}
-            className="h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            className="h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 [&_option]:bg-paper [&_option]:text-ink"
           >
             <option value="" disabled>
               {t("categoryPlaceholder")}
