@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Handshake, ShieldCheck, Building2 } from "lucide-react";
@@ -6,7 +7,6 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ListingCard } from "@/components/listings/listing-card";
 import { HeroListingSearch } from "@/components/listings/hero-listing-search";
-import { AiPriceEstimate } from "@/components/home/ai-price-estimate";
 import { InvestorsHomeTeaser } from "@/components/home/investors-home-teaser";
 import { getFeaturedListings } from "@/lib/listings";
 
@@ -39,6 +39,7 @@ export default async function Home() {
     { n: "01", title: t("step1Title"), body: t("step1Body") },
     { n: "02", title: t("step2Title"), body: t("step2Body") },
     { n: "03", title: t("step3Title"), body: t("step3Body") },
+    { n: "04", title: t("step4Title"), body: t("step4Body") },
   ];
 
   return (
@@ -139,9 +140,44 @@ export default async function Home() {
 
       <section className="border-t border-hairline bg-paper">
         <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-          <FadeIn>
-            <AiPriceEstimate />
-          </FadeIn>
+          <div className="grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+            <FadeIn>
+              <p className="font-mono text-xs tracking-[0.2em] text-clay uppercase">
+                {t("visualEyebrow")}
+              </p>
+              <h2 className="mt-3 max-w-md font-display text-3xl text-ink sm:text-4xl">
+                {t("visualTitleBefore")}{" "}
+                <span className="text-clay">{t("visualTitleAccent")}</span>{" "}
+                {t("visualTitleAfter")}
+              </h2>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">
+                {t("visualDescription")}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl shadow-2xl shadow-ink/20">
+                <Image
+                  src="/images/kentsel-donusum.jpg"
+                  alt={t("visualImageAlt")}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  priority
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface-strong/70 via-surface-strong/10 to-transparent"
+                />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <p className="font-mono text-[0.65rem] tracking-[0.2em] text-white/70 uppercase">
+                    DönüşümKapısı
+                  </p>
+                  <p className="mt-1 text-sm text-white">{t("visualCaption")}</p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -197,7 +233,7 @@ export default async function Home() {
             <p className="mt-3 max-w-2xl text-sm text-ink-muted">{t("howItWorksSubtitle")}</p>
           </FadeIn>
 
-          <ol className="mt-12 grid gap-8 sm:grid-cols-3">
+          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
               <FadeIn key={step.n} delay={i * 0.08}>
                 <li className="list-none">

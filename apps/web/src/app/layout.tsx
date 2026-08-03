@@ -5,6 +5,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { SiteAnnouncement } from "@/components/marketing/site-announcement";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { RTL_LOCALES, type Locale } from "@/i18n/locales";
 import { SITE_URL } from "@/lib/site";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s — DönüşümKapısı",
   },
   description:
-    "Eski daireleri akıllı tercihlere dönüştürün, geleceğinize kalıcı değer kazandırın. Arsa, daire ve bina fırsatlarını tek platformda keşfedin; eşleştirmeyi biz yönetiriz.",
+    "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir. Eski evlerinize değerinde yatırımcı eşleştirmesi fırsatı sunuyoruz; doğru eşleşme sağlandığında süreci ekibimiz yönetir.",
 };
 
 export default async function RootLayout({
@@ -55,6 +56,7 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
             <SiteHeader />
+            <SiteAnnouncement />
             <main className="flex-1">{children}</main>
             <SiteFooter />
             <WhatsAppButton />

@@ -4,6 +4,7 @@ export * from "./validation/offer";
 export * from "./validation/contractor-profile";
 export * from "./validation/contractor-documents";
 export * from "./validation/blog";
+export * from "./validation/announcement";
 export * from "./validation/review";
 export * from "./validation/saved-search";
 export * from "./validation/portfolio";

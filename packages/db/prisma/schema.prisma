@@ -37,6 +37,7 @@ model User {
   pushTokens        PushToken[]
   contractorProfile ContractorProfile?
   blogPosts         BlogPost[]
+  announcements     Announcement[]
   contractorReviews Review[]           @relation("ContractorReviews")
   reviewsWritten    Review[]           @relation("ReviewerReviews")
   savedSearches     SavedSearch[]
@@ -275,6 +276,23 @@ model BlogPost {
   @@index([published, createdAt])
   @@index([province, district])
   @@map("blog_posts")
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  body      String   @db.Text
+  imageUrl  String?
+  linkUrl   String?
+  published Boolean  @default(false)
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([published, createdAt])
+  @@map("announcements")
 }
 
 model Account {

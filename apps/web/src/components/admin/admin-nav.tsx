@@ -9,6 +9,7 @@ import {
   ChartColumn,
   HardHat,
   LayoutDashboard,
+  Megaphone,
   MessagesSquare,
   Newspaper,
   ShieldCheck,
@@ -45,6 +46,7 @@ const GROUPS: NavGroup[] = [
     items: [
       { href: "/panel/admin/analitik", labelKey: "nav.analytics", icon: ChartColumn },
       { href: "/panel/admin/blog", labelKey: "nav.blog", icon: Newspaper },
+      { href: "/panel/admin/duyurular", labelKey: "nav.announcements", icon: Megaphone },
     ],
   },
 ];
