@@ -293,6 +293,200 @@ DönüşümKapısı gibi platformlarda "doğrulanmış" ibaresi, firmanın ticar
 
 Binanız için doğrulanmış müteahhitlerden güvenle teklif almak isterseniz, [DönüşümKapısı'nda ücretsiz ilan oluşturarak](/ilan-ver) süreci başlatabilirsiniz.`,
   },
+  {
+    slug: "istanbul-uskudar-kentsel-donusum-rehberi",
+    title: "Üsküdar'da Kentsel Dönüşüm: Bölge Bölge Fırsat ve Süreç Rehberi",
+    excerpt:
+      "Üsküdar'ın eski yapı stokunda dönüşüm sürecini başlatmak isteyen malikler için riskli yapı, teklif karşılaştırma ve sözleşme kontrol listesi.",
+    metaDescription:
+      "Üsküdar kentsel dönüşüm süreci nasıl ilerler? Riskli yapı tespiti, müteahhit teklifi ve sözleşme adımlarını pratik bir rehberle inceleyin.",
+    category: "ilce-rehberleri",
+    province: "İstanbul",
+    district: "Üsküdar",
+    tags: ["üsküdar", "istanbul", "kentsel dönüşüm", "riskli yapı"],
+    body: `Üsküdar, Boğaz hattı ve iç mahallelerdeki eski yapı stoğu nedeniyle kentsel dönüşüm talebinin yoğun olduğu ilçelerden biri. Bu rehberde maliklerin süreci güvenli ve planlı yürütmesi için kritik adımları özetliyoruz.
+
+## Üsküdar'da dönüşümü hızlandıran etkenler
+
+- 40 yaş üstü binaların yaygınlığı
+- Merkezi konum ve ulaşım erişimi
+- Kat karşılığı projelerde görece rekabetçi teklif ortamı
+
+## Önerilen yol haritası
+
+1. Lisanslı kurumla riskli yapı tespiti yaptırın.
+2. Malik kararını yazılı ve şeffaf tutanaklarla alın.
+3. En az üç doğrulanmış müteahhitten yazılı teklif toplayın.
+4. Teslim süresi, teminat ve kira yardımı maddelerini sözleşmeye net yazdırın.
+
+## Dikkat edilmesi gerekenler
+
+Sözleşmede gecikme cezası, teminat mektubu ve bağımsız bölüm dağılımı belirsiz bırakılmamalıdır. Teklifleri yalnızca fiyat değil, süre ve teminat gücüyle karşılaştırın.
+
+Üsküdar'daki binanız için süreci başlatmak isterseniz [ücretsiz ilan vererek](/ilan-ver) doğrulanmış müteahhitlerden teklif alabilirsiniz.`,
+  },
+  {
+    slug: "bursa-osmangazi-kentsel-donusum-sureci",
+    title: "Bursa Osmangazi'de Kentsel Dönüşüm Süreci: Malikler İçin Pratik Rehber",
+    excerpt:
+      "Osmangazi ve çevresinde eski binalar için riskli yapıdan teslime kadar izlenmesi gereken adımlar ve sık yapılan hatalar.",
+    metaDescription:
+      "Bursa Osmangazi kentsel dönüşüm başvurusu nasıl yapılır? Riskli yapı, müteahhit seçimi ve sözleşme kontrollerini adım adım öğrenin.",
+    category: "ilce-rehberleri",
+    province: "Bursa",
+    district: "Osmangazi",
+    tags: ["bursa", "osmangazi", "kentsel dönüşüm", "malik rehberi"],
+    body: `Bursa Osmangazi'de eski yapı stoku ve merkezi lokasyon, dönüşüm projelerini hem malikler hem müteahhitler için cazip kılıyor. Başarılı bir süreç için teknik ve hukuki adımların sırasını doğru kurmak gerekir.
+
+## Süreç özeti
+
+### 1. Teknik tespit
+Yetkili kuruluşla riskli yapı raporu alınır ve ilgili idareye bildirilir.
+
+### 2. Malik uzlaşması
+Arsa payı çoğunluğuyla alınan karar, sürecin hukuki temelini oluşturur.
+
+### 3. Teklif toplama
+Fiyat bandı, süre ve teminat koşullarını yazılı karşılaştırın.
+
+### 4. Sözleşme
+Kat karşılığı inşaat sözleşmesinde teslim, ceza ve teminat maddeleri açık olmalı.
+
+## Sık hata
+
+Yalnızca sözlü vaatlere dayanmak. Her kritik taahhüt yazılı hale getirilmelidir.
+
+Binanız için güvenli eşleşme ile ilerlemek isterseniz [DönüşümKapısı üzerinden ilan oluşturabilirsiniz](/ilan-ver).`,
+  },
+  {
+    slug: "kat-karsiligi-sozlesmede-dikkat-edilecekler",
+    title: "Kat Karşılığı Sözleşmede Dikkat Edilecek 8 Madde",
+    excerpt:
+      "Kentsel dönüşümde en kritik belge olan kat karşılığı inşaat sözleşmesinde maliklerin mutlaka kontrol etmesi gereken maddeler.",
+    metaDescription:
+      "Kat karşılığı inşaat sözleşmesinde teslim süresi, teminat, gecikme cezası ve bağımsız bölüm dağılımı nasıl yazılmalı? 8 kritik madde.",
+    category: "surec-ve-mevzuat",
+    province: null,
+    district: null,
+    tags: ["kat karşılığı", "sözleşme", "teminat", "kentsel dönüşüm"],
+    body: `Kat karşılığı inşaat sözleşmesi, dönüşüm sürecinin omurgasıdır. Eksik veya belirsiz maddeler ileride maliyetli ihtilaflara yol açabilir.
+
+## Kontrol listesi
+
+1. **Bağımsız bölüm dağılımı:** Hangi dairelerin kime ait olduğu net yazılmalı.
+2. **Teslim tarihi:** Ay/yıl bazında açık olmalı.
+3. **Gecikme cezası:** Günlük/aylık tutar veya oran tanımlanmalı.
+4. **Teminat mektubu:** Tutar, süre ve nakde çevrilebilirlik şartı.
+5. **Kira yardımı / geçici konut:** Başlangıç ve bitiş koşulları.
+6. **Teknik standart:** Yönetmelik ve malzeme kalitesi referansları.
+7. **Fesih şartları:** Tarafların haklı fesih halleri.
+8. **Uyuşmazlık çözümü:** Yetkili mahkeme / arabuluculuk yolu.
+
+## Pratik öneri
+
+Sözleşme imzasından önce birden fazla teklifi yazılı karşılaştırın ve danışmanlık alın. Platform üzerinden [doğrulanmış müteahhit tekliflerini](/muteahhitler) değerlendirerek ilerlemek riski azaltır.`,
+  },
+  {
+    slug: "kira-yardimi-ve-gecici-konut-kentsel-donusum",
+    title: "Kentsel Dönüşümde Kira Yardımı ve Geçici Konut: Ne Beklemelisiniz?",
+    excerpt:
+      "Tahliye sonrası süreçte kira yardımı, geçici konut taahhütleri ve sözleşmeye yazılması gereken pratik detaylar.",
+    metaDescription:
+      "Kentsel dönüşümde kira yardımı nasıl işler? Geçici konut taahhüdü, süre ve tutar maddeleri sözleşmede nasıl yer almalı?",
+    category: "surec-ve-mevzuat",
+    province: null,
+    district: null,
+    tags: ["kira yardımı", "geçici konut", "tahliye", "kentsel dönüşüm"],
+    body: `Dönüşüm sürecinde tahliye sonrası yaşam düzeni, maliklerin en sık sorduğu konuların başında gelir. Bu başlık sözlü vaatle bırakılmamalı; sözleşmeye bağlanmalıdır.
+
+## Netleştirilmesi gerekenler
+
+- Yardımın aylık tutarı veya hesaplama yöntemi
+- Ödemenin başlangıç ve bitiş tarihi
+- Gecikmeli teslimde yardımın devam edip etmeyeceği
+- Geçici konut sağlanacaksa konum ve standart
+
+## Dikkat
+
+Kira yardımı maddesi yoksa süreç uzadığında mali yük malik üzerinde kalabilir. Teklif aşamasında bu kalemi özellikle sorun.
+
+Süreci planlı yönetmek için [ücretsiz ilan verip](/ilan-ver) yazılı teklif toplayabilirsiniz.`,
+  },
+  {
+    slug: "deprem-guvenligi-ve-eski-bina-yenileme",
+    title: "Deprem Güvenliği İçin Eski Bina Yenileme: Ne Zaman Dönüşüm Gerekir?",
+    excerpt:
+      "Eski binalarda güçlendirme mi, yık-yap dönüşüm mü daha doğru? Teknik ve ekonomik karar kriterleri.",
+    metaDescription:
+      "Eski binada güçlendirme mi kentsel dönüşüm mü? Deprem güvenliği, maliyet ve ömür açısından karar vermenize yardımcı rehber.",
+    category: "genel",
+    province: null,
+    district: null,
+    tags: ["deprem güvenliği", "güçlendirme", "eski bina", "yenileme"],
+    body: `Deprem riski yüksek bölgelerde eski yapıların güvenliği kritik bir gündem. Her bina için tek cevap yoktur; teknik rapor ve ekonomik analiz birlikte okunmalıdır.
+
+## Güçlendirme ne zaman yeterli olabilir?
+
+- Taşıyıcı sistem kısmen iyileştirilebilir durumdaysa
+- Maliyet, yık-yap alternatifine göre anlamlı ölçüde düşükse
+- İmar ve kullanım koşulları dönüşümü zorlaştırıyorsa
+
+## Dönüşüm ne zaman daha doğru olur?
+
+- Yapı yaşı ve hasar riski yüksekse
+- Güçlendirme sonrası ömür artışı sınırlı kalacaksa
+- Bölgede dönüşümle değer artışı ve daha güvenli konut mümkünse
+
+Kararı teknik rapor olmadan vermeyin. Süreçte güvenli eşleşme için [DönüşümKapısı'nda ilan oluşturabilirsiniz](/ilan-ver).`,
+  },
+  {
+    slug: "muteahhit-teklifi-nasil-karsilastirilir",
+    title: "Müteahhit Teklifini Nasıl Karşılaştırırsınız? Fiyat Dışında 6 Kriter",
+    excerpt:
+      "En düşük teklif her zaman en doğru seçim değildir. Süre, teminat, referans ve sözleşme kalitesiyle karşılaştırma yöntemi.",
+    metaDescription:
+      "Kentsel dönüşümde müteahhit teklifi nasıl karşılaştırılır? Fiyat, süre, teminat, referans ve sözleşme kalitesi için 6 kriter.",
+    category: "muteahhit-secimi",
+    province: null,
+    district: null,
+    tags: ["müteahhit teklifi", "karşılaştırma", "teminat", "referans"],
+    body: `Teklif karşılaştırmasında yalnızca toplam rakama bakmak yaygın bir hatadır. Dengeli bir değerlendirme şu başlıkları içerir:
+
+1. **Fiyat bandı:** Minimum-maksimum aralık ve kapsam
+2. **Süre:** Gerçekçi teslim takvimi
+3. **Teminat:** Mektup tutarı ve geçerlilik
+4. **Referans:** Tamamlanmış benzer projeler
+5. **Evrak doğrulama:** Yetki belgesi ve ticari kayıtlar
+6. **Sözleşme netliği:** Ceza, fesih ve dağılım maddeleri
+
+## Öneri
+
+Aynı formatta yazılı teklif isteyin. Sözlü farklar tabloda kaybolur. Platformdaki [doğrulanmış müteahhitlerle](/muteahhitler) ilerlemek karşılaştırma kalitesini yükseltir.`,
+  },
+  {
+    slug: "kentsel-donusumde-yatirimci-bakisi",
+    title: "Kentsel Dönüşümde Yatırımcı Bakışı: Arsa, Bina ve Daire Fırsatları",
+    excerpt:
+      "Yatırımcılar için dönüşüm bölgelerinde arsa, mevcut bina ve daire seçeneklerini değerlendirirken bakılması gereken temel göstergeler.",
+    metaDescription:
+      "Kentsel dönüşüm yatırımlarında arsa, bina ve daire fırsatları nasıl okunur? Konum, imar, süre ve risk göstergeleri.",
+    category: "genel",
+    province: null,
+    district: null,
+    tags: ["yatırım", "arsa", "daire", "kentsel dönüşüm"],
+    body: `Dönüşüm odaklı yatırımlarda getiri kadar süreç riski de kritiktir. Karar verirken yalnızca bugünkü fiyatı değil, izin, süre ve eşleşme kalitesini de hesaba katın.
+
+## Bakılacak göstergeler
+
+- Konum ve ulaşım erişimi
+- İmar durumu ve parsel potansiyeli
+- Yapı yaşı / riskli yapı durumu
+- Proje süresi ve çıkış senaryosu
+
+## Pratik yaklaşım
+
+Tek bir varlığa kilitlenmeden arsa, bina ve daire alternatiflerini aynı çerçevede kıyaslayın. Fırsatları keşfetmek için [yatırımcılar sayfasını](/yatirimcilar) ve [ilanları](/ilanlar) inceleyebilirsiniz.`,
+  },
 ];
 
 async function main() {

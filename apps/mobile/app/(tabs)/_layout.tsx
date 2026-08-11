@@ -3,7 +3,7 @@ import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
 import { useColors } from "@/src/lib/theme-context";
-import { AiPriceEstimateBubble } from "@/src/components/ai-price-estimate-bubble";
+import { SiteAnnouncementModal } from "@/src/components/site-announcement-modal";
 
 export default function TabsLayout() {
   const colors = useColors();
@@ -73,7 +73,7 @@ export default function TabsLayout() {
           }}
         />
       </Tabs>
-      <AiPriceEstimateBubble />
+      <SiteAnnouncementModal />
     </View>
   );
 }

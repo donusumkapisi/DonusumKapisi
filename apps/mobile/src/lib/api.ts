@@ -8,7 +8,6 @@ import type {
   CreateSavedSearchInput,
   ForgotPasswordInput,
   ListingDTO,
-  PriceEstimateInput,
   ListingStatus,
   LogInInput,
   NotificationPreferencesDTO,
@@ -322,16 +321,15 @@ export const api = {
       trends: { key: string; label: string; listings: number; offers: number }[];
     }>("/api/mobile/v1/admin/analytics", {}, true),
 
-  estimatePrice: (input: PriceEstimateInput & { locale?: string }) =>
+  getLatestAnnouncement: () =>
     request<{
-      priceMin: number;
-      priceMax: number;
-      averagePrice: number;
-      explanation: string | null;
-      source: "openai" | "local";
-      openAIFailure: "missing_key" | "quota" | "auth" | "other" | null;
-    }>("/api/mobile/v1/price-estimate", {
-      method: "POST",
-      body: JSON.stringify(input),
-    }),
+      announcement: {
+        id: string;
+        title: string;
+        body: string;
+        imageUrl: string | null;
+        linkUrl: string | null;
+        createdAt: string;
+      } | null;
+    }>("/api/mobile/v1/announcements/latest"),
 };

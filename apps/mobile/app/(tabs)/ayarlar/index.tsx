@@ -73,6 +73,7 @@ export default function SettingsScreen() {
 
         <View>
           <SectionTitle icon="information-circle-outline" title={t("settings.aboutLabel")} />
+          <Text style={styles.aboutBody}>{t("settings.aboutBody")}</Text>
           <Text style={styles.versionText}>
             {t("settings.versionLabel", { version: Constants.expoConfig?.version ?? "1.0.0" })}
           </Text>
@@ -179,6 +180,7 @@ function createStyles(colors: Colors) {
       justifyContent: "center",
     },
     contactActionLabel: { fontSize: 11, fontWeight: "500", color: colors.inkMuted },
+    aboutBody: { fontSize: 13, lineHeight: 20, color: colors.inkMuted, marginBottom: 8 },
     versionText: { fontSize: 13, color: colors.inkMuted },
   });
 }

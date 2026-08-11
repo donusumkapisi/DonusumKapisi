@@ -8,10 +8,10 @@ export async function InvestorsHomeTeaser() {
   const t = await getTranslations("investors");
 
   const cards = [
-    { icon: LandPlot, title: t("opp1Title"), tag: t("opp1Tag"), body: t("homeCard1Body") },
-    { icon: DoorOpen, title: t("opp4Title"), tag: t("opp4Tag"), body: t("homeCard4Body") },
-    { icon: Building2, title: t("opp2Title"), tag: t("opp2Tag"), body: t("homeCard2Body") },
-    { icon: MapPinned, title: t("opp3Title"), tag: t("opp3Tag"), body: t("homeCard3Body") },
+    { icon: LandPlot, title: t("opp1Title"), tag: t("opp1Tag") },
+    { icon: DoorOpen, title: t("opp4Title"), tag: t("opp4Tag") },
+    { icon: Building2, title: t("opp2Title"), tag: t("opp2Tag") },
+    { icon: MapPinned, title: t("opp3Title"), tag: t("opp3Tag") },
   ];
 
   return (
@@ -37,7 +37,7 @@ export async function InvestorsHomeTeaser() {
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {cards.map(({ icon: Icon, title, tag, body }, i) => (
+          {cards.map(({ icon: Icon, title, tag }, i) => (
             <FadeIn key={title} delay={i * 0.06}>
               <div className="h-full border-l-4 border-clay bg-paper px-5 py-6">
                 <Icon className="size-5 text-clay" />
@@ -45,7 +45,6 @@ export async function InvestorsHomeTeaser() {
                 <p className="mt-1.5 font-mono text-[0.7rem] tracking-[0.18em] text-clay uppercase">
                   {tag}
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{body}</p>
               </div>
             </FadeIn>
           ))}

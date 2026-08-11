@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s — DönüşümKapısı",
   },
   description:
-    "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir. Eski evlerinize değerinde yatırımcı eşleştirmesi fırsatı sunuyoruz; doğru eşleşme sağlandığında süreci ekibimiz yönetir.",
+    "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir. Eski evlerinize değerinde yatırımcı eşleştirmesi fırsatı sunuyoruz.",
 };
 
 export default async function RootLayout({

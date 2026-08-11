@@ -5,8 +5,9 @@ import { BrandMark } from "@/components/brand/brand-logo";
 import { FadeIn } from "@/components/motion/fade-in";
 
 /**
- * Uygulama henüz mağazalarda yayında değil; rozetler bilinçli olarak
- * anasayfaya (`/`) yönlendiriyor, gerçek bir mağaza hedefine değil.
+ * Mağaza rozetleri App Store / Google Play duyurusuna paralel olarak
+ * ana sayfa mobil bölümüne yönlendirir. Gerçek mağaza URL'leri eklendiğinde
+ * buradaki href değerleri güncellenmelidir.
  */
 export async function MobileAppSection() {
   const t = await getTranslations("mobileApp");

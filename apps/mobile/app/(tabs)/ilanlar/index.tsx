@@ -1,6 +1,14 @@
 import { useCallback, useMemo, useState } from "react";
 import { useFocusEffect, useRouter } from "expo-router";
-import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTranslation } from "react-i18next";
@@ -19,6 +27,15 @@ const CATEGORIES = [
   { key: "30", labelKey: "vitrin.category30", minAge: 30 },
   { key: "40", labelKey: "vitrin.category40", minAge: 40 },
 ] as const;
+
+const HOW_IT_WORKS_STEPS = [
+  { titleKey: "vitrin.step1Title", bodyKey: "vitrin.step1Body" },
+  { titleKey: "vitrin.step2Title", bodyKey: "vitrin.step2Body" },
+  { titleKey: "vitrin.step3Title", bodyKey: "vitrin.step3Body" },
+  { titleKey: "vitrin.step4Title", bodyKey: "vitrin.step4Body" },
+] as const;
+
+const urbanRenewalImage = require("../../../assets/kentsel-donusum.jpg");
 
 export default function ListingsScreen() {
   const router = useRouter();
@@ -129,7 +146,18 @@ export default function ListingsScreen() {
       ) : error ? (
         <Text style={styles.message}>{error}</Text>
       ) : listings.length === 0 ? (
-        <Text style={styles.message}>{t("vitrin.noResults")}</Text>
+        <FlatList
+          data={[]}
+          keyExtractor={() => "empty"}
+          contentContainerStyle={styles.list}
+          ListHeaderComponent={
+            <View style={styles.headerSections}>
+              <HomeIntro styles={styles} />
+              <Text style={styles.message}>{t("vitrin.noResults")}</Text>
+            </View>
+          }
+          renderItem={() => null}
+        />
       ) : view === "map" ? (
         <View style={{ flex: 1 }}>
           <ListingsMap listings={listings} onSelect={openListing} />
@@ -143,6 +171,7 @@ export default function ListingsScreen() {
           contentContainerStyle={styles.list}
           ListHeaderComponent={
             <View style={styles.headerSections}>
+              <HomeIntro styles={styles} />
               {featuredListing && (
                 <View style={styles.featuredSection}>
                   <Text style={styles.sectionLabel}>{t("vitrin.featuredLabel")}</Text>
@@ -163,6 +192,46 @@ export default function ListingsScreen() {
           )}
         />
       )}
+    </View>
+  );
+}
+
+function HomeIntro({ styles }: { styles: ReturnType<typeof createStyles> }) {
+  const { t } = useTranslation();
+  const colors = useColors();
+
+  return (
+    <View style={styles.introSections}>
+      <Text style={styles.mediationBanner}>{t("vitrin.mediationBanner")}</Text>
+
+      <View style={styles.visualCard}>
+        <Image source={urbanRenewalImage} style={styles.visualImage} resizeMode="cover" />
+        <View style={styles.visualCopy}>
+          <Text style={styles.visualEyebrow}>{t("vitrin.visualEyebrow")}</Text>
+          <Text style={styles.visualTitle}>
+            {t("vitrin.visualTitle")}{" "}
+            <Text style={styles.visualTitleAccent}>{t("vitrin.visualTitleAccent")}</Text>
+          </Text>
+          <Text style={styles.visualCaption}>{t("vitrin.visualCaption")}</Text>
+        </View>
+      </View>
+
+      <View style={styles.howItWorks}>
+        <Text style={styles.sectionLabel}>{t("vitrin.howItWorksEyebrow")}</Text>
+        <Text style={styles.howItWorksTitle}>{t("vitrin.howItWorksTitle")}</Text>
+        <Text style={styles.howItWorksSubtitle}>{t("vitrin.howItWorksSubtitle")}</Text>
+        <View style={styles.stepsGrid}>
+          {HOW_IT_WORKS_STEPS.map((step, index) => (
+            <View key={step.titleKey} style={styles.stepCard}>
+              <Text style={[styles.stepNumber, { color: colors.turquoise }]}>
+                {String(index + 1).padStart(2, "0")}
+              </Text>
+              <Text style={styles.stepTitle}>{t(step.titleKey)}</Text>
+              <Text style={styles.stepBody}>{t(step.bodyKey)}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
     </View>
   );
 }
@@ -214,8 +283,53 @@ function createStyles(colors: Colors) {
     tabItemActive: { borderBottomColor: colors.ink },
     tabText: { fontSize: 13.5, fontWeight: "500", color: colors.inkMuted },
     tabTextActive: { color: colors.ink, fontWeight: "600" },
-    message: { marginTop: 32, textAlign: "center", color: colors.inkMuted, fontSize: 14 },
+    message: { marginTop: 8, textAlign: "center", color: colors.inkMuted, fontSize: 14 },
     headerSections: { gap: 20, marginBottom: 14 },
+    introSections: { gap: 20 },
+    mediationBanner: {
+      fontSize: 14,
+      lineHeight: 21,
+      color: colors.inkMuted,
+    },
+    visualCard: {
+      borderRadius: 18,
+      overflow: "hidden",
+      backgroundColor: colors.mist,
+      borderWidth: 1,
+      borderColor: colors.hairline,
+    },
+    visualImage: { width: "100%", height: 180 },
+    visualCopy: { padding: 16, gap: 6 },
+    visualEyebrow: {
+      fontSize: 11,
+      fontWeight: "700",
+      letterSpacing: 1.4,
+      textTransform: "uppercase",
+      color: colors.turquoise,
+    },
+    visualTitle: {
+      fontSize: 22,
+      lineHeight: 28,
+      fontWeight: "600",
+      color: colors.ink,
+    },
+    visualTitleAccent: { color: colors.turquoise },
+    visualCaption: { fontSize: 13, lineHeight: 19, color: colors.inkMuted },
+    howItWorks: { gap: 8 },
+    howItWorksTitle: { fontSize: 22, fontWeight: "600", color: colors.ink },
+    howItWorksSubtitle: { fontSize: 14, lineHeight: 21, color: colors.inkMuted, marginBottom: 6 },
+    stepsGrid: { gap: 10 },
+    stepCard: {
+      padding: 14,
+      borderRadius: 14,
+      backgroundColor: colors.mist,
+      borderWidth: 1,
+      borderColor: colors.hairline,
+      gap: 4,
+    },
+    stepNumber: { fontSize: 12, fontWeight: "700", letterSpacing: 1 },
+    stepTitle: { fontSize: 15, fontWeight: "600", color: colors.ink },
+    stepBody: { fontSize: 13, lineHeight: 19, color: colors.inkMuted },
     featuredSection: { gap: 10 },
     sectionLabel: {
       fontSize: 11,
