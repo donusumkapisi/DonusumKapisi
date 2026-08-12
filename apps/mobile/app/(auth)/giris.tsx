@@ -95,7 +95,13 @@ export default function LogInScreen() {
       router.replace("/(tabs)/panel");
     } catch (err) {
       if (err instanceof GoogleSignInCancelledError) return;
-      setError(err instanceof ApiError ? err.message : t("auth.giris.googleError"));
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : err instanceof Error
+            ? err.message
+            : t("auth.giris.googleError")
+      );
     } finally {
       setIsGoogleSubmitting(false);
     }
@@ -110,7 +116,13 @@ export default function LogInScreen() {
       router.replace("/(tabs)/panel");
     } catch (err) {
       if (err instanceof AppleSignInCancelledError) return;
-      setError(err instanceof ApiError ? err.message : t("auth.giris.appleError"));
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : err instanceof Error
+            ? err.message
+            : t("auth.giris.appleError")
+      );
     } finally {
       setIsAppleSubmitting(false);
     }

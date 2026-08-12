@@ -72,7 +72,13 @@ export default function SignUpScreen() {
       router.replace("/(tabs)/panel");
     } catch (err) {
       if (err instanceof GoogleSignInCancelledError) return;
-      setError(err instanceof ApiError ? err.message : t("auth.kayit.googleError"));
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : err instanceof Error
+            ? err.message
+            : t("auth.kayit.googleError")
+      );
     } finally {
       setIsGoogleSubmitting(false);
     }
@@ -87,7 +93,13 @@ export default function SignUpScreen() {
       router.replace("/(tabs)/panel");
     } catch (err) {
       if (err instanceof AppleSignInCancelledError) return;
-      setError(err instanceof ApiError ? err.message : t("auth.kayit.appleError"));
+      setError(
+        err instanceof ApiError
+          ? err.message
+          : err instanceof Error
+            ? err.message
+            : t("auth.kayit.appleError")
+      );
     } finally {
       setIsAppleSubmitting(false);
     }
