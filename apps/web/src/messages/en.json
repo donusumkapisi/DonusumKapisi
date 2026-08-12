@@ -346,6 +346,7 @@
     "forgotButton": "Send Code",
     "forgotButtonPending": "Sending…",
     "forgotSuccess": "If an account exists, a reset code was sent to your email.",
+    "errorForgotEmailFailed": "Email could not be sent right now. Please try again later or contact support.",
     "resetEyebrow": "New Password",
     "resetTitle": "Set a new password",
     "resetCodeLabel": "6-digit code",
@@ -685,7 +686,8 @@
       "users": "Users",
       "analytics": "Analytics",
       "blog": "Blog",
-      "announcements": "Announcements"
+      "announcements": "Announcements",
+      "maintenance": "Maintenance"
     },
     "overviewTitle": "Overview",
     "overviewQueue": "{count} items are waiting for your decision.",
@@ -1001,5 +1003,22 @@
     "uploadedTitle": "Uploaded documents",
     "uploadedCount": "{done}/{total} completed",
     "missingStatus": "Missing"
+  },
+  "panelMaintenanceAdmin": {
+    "title": "Maintenance Mode",
+    "description": "When enabled, web and mobile show a maintenance screen to visitors. Admins can still sign in and use the panel.",
+    "statusLabel": "System status",
+    "statusHint": "Users see the maintenance screen while this is on; turn it off with an admin account.",
+    "statusOn": "Under maintenance",
+    "statusOff": "Live",
+    "messageLabel": "Message shown to users",
+    "messagePlaceholder": "We are performing short maintenance...",
+    "messageHelp": "Leave empty to use the default message.",
+    "turnOn": "Enable maintenance mode",
+    "turnOff": "Disable maintenance mode"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "adminLogin": "Admin sign in"
   }
 }

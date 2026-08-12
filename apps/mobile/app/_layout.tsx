@@ -10,6 +10,7 @@ import {
 import { AuthProvider } from "@/src/lib/auth-context";
 import { ThemeProvider, useColors, useTheme } from "@/src/lib/theme-context";
 import { LanguageProvider } from "@/src/lib/i18n-context";
+import { MaintenanceGate } from "@/src/components/maintenance-gate";
 
 function RootNavigation() {
   const { scheme } = useTheme();
@@ -34,10 +35,12 @@ function RootNavigation() {
   return (
     <NavigationThemeProvider value={navigationTheme}>
       <StatusBar style={scheme === "dark" ? "light" : "dark"} />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="(auth)" />
-      </Stack>
+      <MaintenanceGate>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="(auth)" />
+        </Stack>
+      </MaintenanceGate>
     </NavigationThemeProvider>
   );
 }

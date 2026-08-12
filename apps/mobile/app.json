@@ -6,11 +6,11 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.donusumkapisi.mobile",
+      "bundleIdentifier": "com.donusumkapisi.app",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }

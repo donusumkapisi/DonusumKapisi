@@ -326,6 +326,7 @@
     "forgotButton": "Kod Gönder",
     "forgotButtonPending": "Gönderiliyor…",
     "forgotSuccess": "Hesabınız varsa şifre sıfırlama kodu e-postanıza gönderildi.",
+    "errorForgotEmailFailed": "Şu an e-posta gönderilemiyor. Lütfen daha sonra tekrar deneyin veya destek ile iletişime geçin.",
     "resetEyebrow": "Yeni Şifre",
     "resetTitle": "Yeni şifrenizi belirleyin",
     "resetBody": "E-postanıza gelen kodu ve yeni şifrenizi girin.",
@@ -685,7 +686,8 @@
       "users": "Kullanıcılar",
       "analytics": "Analitik",
       "blog": "Blog",
-      "announcements": "Duyurular"
+      "announcements": "Duyurular",
+      "maintenance": "Bakım Modu"
     },
     "overviewTitle": "Özet",
     "overviewQueue": "{count} iş sizin kararınızı bekliyor.",
@@ -1001,5 +1003,22 @@
     "uploadedTitle": "Yüklenen belgeler",
     "uploadedCount": "{done}/{total} tamamlandı",
     "missingStatus": "Eksik"
+  },
+  "panelMaintenanceAdmin": {
+    "title": "Bakım Modu",
+    "description": "Bakım modu açıkken web ve mobil uygulama ziyaretçilere kapalı görünür. Yöneticiler giriş yapıp paneli kullanmaya devam eder.",
+    "statusLabel": "Sistem durumu",
+    "statusHint": "Açıldığında kullanıcılar bakım ekranını görür; admin hesabıyla kapatabilirsiniz.",
+    "statusOn": "Bakımda",
+    "statusOff": "Aktif",
+    "messageLabel": "Kullanıcılara gösterilecek mesaj",
+    "messagePlaceholder": "Sistemimizde kısa süreli bakım çalışması yapılmaktadır...",
+    "messageHelp": "Boş bırakırsanız varsayılan mesaj kullanılır.",
+    "turnOn": "Bakım modunu aç",
+    "turnOff": "Bakım modunu kapat"
+  },
+  "maintenance": {
+    "title": "Bakım çalışması",
+    "adminLogin": "Yönetici girişi"
   }
 }

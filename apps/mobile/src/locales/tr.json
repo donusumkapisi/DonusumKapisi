@@ -21,9 +21,16 @@
     "heroSubtitleLoading": "İlanlar yükleniyor…",
     "heroSubtitle": "{{count}} bina, yeni bir hayatı bekliyor",
     "mediationBanner": "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir; fiyat teklifi verilir, eski evlerinize değerinde yatırımcı fırsatı sunulur. Doğru ve güvenli eşleşme sağlanana kadar süreci ve gerekli şartları ekibimiz yönetir.",
+    "roleHomeownerTitle": "Ev sahibi misiniz?",
+    "roleHomeownerBody": "Binanızı ücretsiz yayınlayın. Doğrulanmış müteahhitlerden fiyat teklifi alın.",
+    "roleHomeownerCta": "İlan Ver",
+    "roleContractorTitle": "Müteahhit misiniz?",
+    "roleContractorBody": "Filtrelenmiş kentsel dönüşüm ilanlarına teklif verin.",
+    "roleContractorCta": "Kayıt Ol",
     "visualEyebrow": "Kentsel dönüşüm",
     "visualTitle": "Sağlam Yapılar",
     "visualTitleAccent": "Güvenli Yarınlar",
+    "visualDescription": "Süreç şeffaf ve takip edilebilir ilerler.",
     "visualCaption": "Güvenli ve şeffaf bir dönüşüm süreci.",
     "howItWorksEyebrow": "Süreç",
     "howItWorksTitle": "Nasıl çalışır",
@@ -72,7 +79,7 @@
   },
   "ilanVer": {
     "title": "İlan Ver",
-    "subtitle": "Doğru eşleşme sağlanana kadar süreci ekibimiz yönetir",
+    "subtitle": "Binanızı ücretsiz yayınlayın, doğrulanmış müteahhitlerden teklif alın",
     "lockedNotice": "İlan vermek için ev sahibi hesabıyla giriş yapmalısınız.",
     "sectionBasic": "Temel Bilgiler",
     "labelTitle": "Başlık",
@@ -112,7 +119,7 @@
     "contactEmail": "E-posta",
     "offerTitleNew": "Bu ilana teklif verin",
     "offerTitleUpdate": "Teklifinizi güncelleyin",
-    "offerNotice": "Doğru eşleşme sağlandığında süreci ekibimiz yönetir. Güvenli eşleşme sağlanana kadar gerekli şartları ekibimiz yönetir.",
+    "offerNotice": "Taraflar bir araya getirilir; iletişim ve belgeler tek merkezden, şeffaf biçimde ilerler.",
     "offerPriceMin": "Min. Fiyat (₺)",
     "offerPriceMax": "Maks. Fiyat (₺)",
     "offerDuration": "Tahmini Süre (ay, opsiyonel)",
@@ -231,6 +238,11 @@
     "save": "Kaydet",
     "statPendingApproval": "Bekleyen Onay",
     "statContactPending": "İletişim Bekleyen",
+    "maintenanceTitle": "Bakım Modu",
+    "maintenanceOn": "Şu an bakımda — ziyaretçiler uygulamayı göremez",
+    "maintenanceOff": "Sistem açık — ziyaretçiler uygulamayı kullanabilir",
+    "maintenanceTurnOn": "Bakım modunu aç",
+    "maintenanceTurnOff": "Bakım modunu kapat",
     "contactPendingTitle": "İletişim Bekleyenler",
     "noContactPending": "Bekleyen iletişim yok.",
     "ownerLabel": "Ev sahibi: {{name}} · {{email}}",
@@ -262,7 +274,7 @@
     "contactWhatsAppMessage": "Merhaba, uygulama hakkında bir sorum var.",
     "contactEmailSubject": "Uygulama hakkında",
     "aboutLabel": "Hakkında",
-    "aboutBody": "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir; eski evlerinize değerinde yatırımcı eşleştirmesi fırsatı sunuyoruz. Doğru ve güvenli eşleşme sağlanana kadar süreci ekibimiz yönetir.",
+    "aboutBody": "Platformumuz ev sahiplerini, müteahhitleri ve yatırımcıları eşleştirir; eski evlerinize değerinde yatırımcı eşleştirmesi fırsatı sunuyoruz. Eşleşme sürecinde iletişim ve belgeler tek merkezden, şeffaf biçimde ilerler.",
     "versionLabel": "Sürüm {{version}}"
   },
   "announcement": {
@@ -378,5 +390,11 @@
     "reviewsTitle": "Değerlendirmeler",
     "noReviews": "Henüz değerlendirme yapılmamış.",
     "defaultReviewerName": "Ev sahibi"
+  },
+  "maintenance": {
+    "title": "Bakım çalışması",
+    "defaultMessage": "Sistemimizde kısa süreli bakım çalışması yapılmaktadır. Lütfen daha sonra tekrar deneyin.",
+    "refresh": "Yenile",
+    "adminLogin": "Yönetici girişi"
   }
 }

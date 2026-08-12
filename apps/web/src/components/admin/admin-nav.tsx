@@ -14,6 +14,7 @@ import {
   Newspaper,
   ShieldCheck,
   Users,
+  Wrench,
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,7 @@ const GROUPS: NavGroup[] = [
       { href: "/panel/admin/analitik", labelKey: "nav.analytics", icon: ChartColumn },
       { href: "/panel/admin/blog", labelKey: "nav.blog", icon: Newspaper },
       { href: "/panel/admin/duyurular", labelKey: "nav.announcements", icon: Megaphone },
+      { href: "/panel/admin/bakim", labelKey: "nav.maintenance", icon: Wrench },
     ],
   },
 ];

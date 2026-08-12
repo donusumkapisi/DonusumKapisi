@@ -97,8 +97,12 @@ export async function forgotPasswordAction(
 
   const user = await prisma.user.findUnique({ where: { email: parsed.data.email } });
   if (user?.passwordHash) {
-    const code = await createPasswordResetCode(user.email);
-    await sendPasswordResetEmail(user.email, code);
+    try {
+      const code = await createPasswordResetCode(user.email);
+      await sendPasswordResetEmail(user.email, code);
+    } catch {
+      return { error: t("errorForgotEmailFailed") };
+    }
   }
 
   return { success: t("forgotSuccess") };

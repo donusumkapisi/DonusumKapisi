@@ -346,6 +346,7 @@
     "forgotButton": "إرسال الرمز",
     "forgotButtonPending": "جارٍ الإرسال…",
     "forgotSuccess": "إن وُجد حساب، أُرسل رمز إلى بريدك.",
+    "errorForgotEmailFailed": "تعذر إرسال البريد الإلكتروني حالياً. حاول لاحقاً أو تواصل مع الدعم.",
     "resetEyebrow": "كلمة مرور جديدة",
     "resetTitle": "عيّن كلمة مرور جديدة",
     "resetCodeLabel": "رمز من 6 أرقام",
@@ -685,7 +686,8 @@
       "users": "المستخدمون",
       "analytics": "التحليلات",
       "blog": "المدونة",
-      "announcements": "الإعلانات"
+      "announcements": "الإعلانات",
+      "maintenance": "وضع الصيانة"
     },
     "overviewTitle": "نظرة عامة",
     "overviewQueue": "{count} عنصراً بانتظار قرارك.",
@@ -1001,5 +1003,22 @@
     "uploadedTitle": "المستندات المرفوعة",
     "uploadedCount": "اكتمل {done}/{total}",
     "missingStatus": "ناقص"
+  },
+  "panelMaintenanceAdmin": {
+    "title": "وضع الصيانة",
+    "description": "عند التفعيل تظهر شاشة صيانة للزوار على الويب والجوال. يمكن للمسؤولين تسجيل الدخول واستخدام اللوحة.",
+    "statusLabel": "حالة النظام",
+    "statusHint": "يرى المستخدمون شاشة الصيانة أثناء التفعيل؛ يمكنك إيقافها بحساب المسؤول.",
+    "statusOn": "قيد الصيانة",
+    "statusOff": "نشط",
+    "messageLabel": "الرسالة المعروضة للمستخدمين",
+    "messagePlaceholder": "نقوم بصيانة قصيرة...",
+    "messageHelp": "اتركه فارغًا لاستخدام الرسالة الافتراضية.",
+    "turnOn": "تفعيل وضع الصيانة",
+    "turnOff": "إيقاف وضع الصيانة"
+  },
+  "maintenance": {
+    "title": "أعمال الصيانة",
+    "adminLogin": "دخول المسؤول"
   }
 }

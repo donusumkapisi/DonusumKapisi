@@ -21,9 +21,16 @@
     "heroSubtitleLoading": "正在加载房源…",
     "heroSubtitle": "{{count}} 栋房屋等待焕新",
     "mediationBanner": "我们的平台撮合业主、承包商与投资者；提交报价并为老旧房产提供按真实价值匹配投资者的机会。在达成正确且安全的撮合之前，流程与必要条件由我们的团队统一管理。",
+    "roleHomeownerTitle": "您是业主吗？",
+    "roleHomeownerBody": "免费发布您的房屋信息，接收经过资质审核的承包商报价。",
+    "roleHomeownerCta": "发布房源",
+    "roleContractorTitle": "您是承包商吗？",
+    "roleContractorBody": "对经过筛选的城市更新房源报价。",
+    "roleContractorCta": "立即注册",
     "visualEyebrow": "城市更新",
     "visualTitle": "坚固建筑，",
     "visualTitleAccent": "安心未来",
+    "visualDescription": "流程保持透明、可追踪。",
     "visualCaption": "安全透明的更新流程。",
     "howItWorksEyebrow": "流程",
     "howItWorksTitle": "如何运作",
@@ -72,7 +79,7 @@
   },
   "ilanVer": {
     "title": "发布房源",
-    "subtitle": "在实现安全撮合之前，流程由我们的团队管理",
+    "subtitle": "免费发布房源，接收经过资质审核的承包商报价",
     "lockedNotice": "需要使用业主账户登录后才能发布房源。",
     "sectionBasic": "基本信息",
     "labelTitle": "标题",
@@ -112,7 +119,7 @@
     "contactEmail": "电子邮件",
     "offerTitleNew": "对该房源提交报价",
     "offerTitleUpdate": "更新您的报价",
-    "offerNotice": "一旦达成正确撮合，流程由我们的团队管理。在实现安全撮合之前，所需条件由我们的团队把控。",
+    "offerNotice": "双方被撮合对接；沟通与文件在统一中心透明推进。",
     "offerPriceMin": "最低报价（₺）",
     "offerPriceMax": "最高报价（₺）",
     "offerDuration": "预计工期（月，选填）",
@@ -231,6 +238,11 @@
     "save": "保存",
     "statPendingApproval": "待审核",
     "statContactPending": "待安排对接",
+    "maintenanceTitle": "维护模式",
+    "maintenanceOn": "维护中 — 访客无法使用应用",
+    "maintenanceOff": "正常 — 访客可以使用应用",
+    "maintenanceTurnOn": "开启维护模式",
+    "maintenanceTurnOff": "关闭维护模式",
     "contactPendingTitle": "待安排对接",
     "noContactPending": "暂无待处理的对接。",
     "ownerLabel": "业主：{{name}} · {{email}}",
@@ -262,7 +274,7 @@
     "contactWhatsAppMessage": "您好，我想咨询关于这款应用的问题。",
     "contactEmailSubject": "关于应用的咨询",
     "aboutLabel": "关于",
-    "aboutBody": "我们的平台撮合业主、承包商与投资者；为老旧房产提供按真实价值匹配投资者的机会。在达成正确且安全的撮合之前，流程由我们的团队管理。",
+    "aboutBody": "我们的平台撮合业主、承包商与投资者；为老旧房产提供按真实价值匹配投资者的机会。沟通与文件在统一中心透明推进。",
     "versionLabel": "版本 {{version}}"
   },
   "announcement": {
@@ -378,5 +390,11 @@
     "reviewsTitle": "评价",
     "noReviews": "还没有人发表评价。",
     "defaultReviewerName": "业主"
+  },
+  "maintenance": {
+    "title": "系统维护",
+    "defaultMessage": "系统正在进行短暂维护，请稍后再试。",
+    "refresh": "刷新",
+    "adminLogin": "管理员登录"
   }
 }

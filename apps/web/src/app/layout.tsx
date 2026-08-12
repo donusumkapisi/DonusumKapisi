@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 import { SiteAnnouncement } from "@/components/marketing/site-announcement";
+import { MaintenanceGate } from "@/components/maintenance-gate";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { RTL_LOCALES, type Locale } from "@/i18n/locales";
 import { SITE_URL } from "@/lib/site";
@@ -55,11 +56,13 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
-            <SiteHeader />
-            <SiteAnnouncement />
-            <main className="flex-1">{children}</main>
-            <SiteFooter />
-            <WhatsAppButton />
+            <MaintenanceGate>
+              <SiteHeader />
+              <SiteAnnouncement />
+              <main className="flex-1">{children}</main>
+              <SiteFooter />
+              <WhatsAppButton />
+            </MaintenanceGate>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

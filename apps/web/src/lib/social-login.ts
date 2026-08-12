@@ -34,6 +34,16 @@ async function linkAccount(
   });
 }
 
+async function findUserByAppleId(appleId: string) {
+  const account = await prisma.account.findUnique({
+    where: {
+      provider_providerAccountId: { provider: "apple", providerAccountId: appleId },
+    },
+    include: { user: true },
+  });
+  return account?.user ?? null;
+}
+
 export async function authenticateWithGoogle(
   idToken: string,
   role?: UserRole
@@ -72,8 +82,18 @@ export async function authenticateWithApple(
   try {
     const { email, appleId } = await verifyAppleIdentityToken(identityToken);
 
-    let user = await prisma.user.findUnique({ where: { email } });
+    let user = await findUserByAppleId(appleId);
+
+    if (!user && email) {
+      user = await prisma.user.findUnique({ where: { email } });
+    }
+
     if (!user) {
+      if (!email) {
+        throw new SocialAuthError(
+          "Bu Apple hesabıyla kayıtlı bir hesap bulunamadı. Önce kayıt olun."
+        );
+      }
       if (!options.role) {
         throw new SocialAuthError(
           "Bu Apple hesabıyla kayıtlı bir hesap bulunamadı. Önce kayıt olun."
@@ -85,6 +105,11 @@ export async function authenticateWithApple(
           name: options.name ?? null,
           role: options.role,
         },
+      });
+    } else if (options.name && !user.name) {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { name: options.name },
       });
     }
 

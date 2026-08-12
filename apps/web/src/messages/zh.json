@@ -346,6 +346,7 @@
     "forgotButton": "发送验证码",
     "forgotButtonPending": "发送中…",
     "forgotSuccess": "若该账户存在，重置验证码已发送至您的邮箱。",
+    "errorForgotEmailFailed": "目前无法发送邮件。请稍后重试或联系支持。",
     "resetEyebrow": "新密码",
     "resetTitle": "设置新密码",
     "resetCodeLabel": "6 位验证码",
@@ -685,7 +686,8 @@
       "users": "用户",
       "analytics": "数据分析",
       "blog": "资讯",
-      "announcements": "公告"
+      "announcements": "公告",
+      "maintenance": "维护模式"
     },
     "overviewTitle": "总览",
     "overviewQueue": "有 {count} 项待您处理。",
@@ -1001,5 +1003,22 @@
     "uploadedTitle": "已上传文件",
     "uploadedCount": "已完成 {done}/{total}",
     "missingStatus": "缺失"
+  },
+  "panelMaintenanceAdmin": {
+    "title": "维护模式",
+    "description": "开启后，网站和移动应用会对访客显示维护页面。管理员仍可登录并使用后台。",
+    "statusLabel": "系统状态",
+    "statusHint": "开启期间用户会看到维护页；可用管理员账号关闭。",
+    "statusOn": "维护中",
+    "statusOff": "正常",
+    "messageLabel": "向用户显示的消息",
+    "messagePlaceholder": "系统正在进行短暂维护...",
+    "messageHelp": "留空则使用默认消息。",
+    "turnOn": "开启维护模式",
+    "turnOff": "关闭维护模式"
+  },
+  "maintenance": {
+    "title": "系统维护",
+    "adminLogin": "管理员登录"
   }
 }

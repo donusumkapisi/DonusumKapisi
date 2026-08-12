@@ -29,6 +29,7 @@ import { downloadAndShareOffersPdf } from "@/src/lib/pdf";
 import { NotificationPreferencesSection } from "@/src/components/notification-preferences-section";
 import { OfferComparisonModal } from "@/src/components/offer-comparison-modal";
 import { AdminAnalyticsSection } from "@/src/components/admin-analytics-section";
+import { AdminMaintenanceSection } from "@/src/components/admin-maintenance-section";
 
 const OFFER_STATUS_TONES: Record<OfferStatus, StatusTone> = {
   PENDING: "warning",
@@ -627,6 +628,8 @@ function AdminPanel() {
       </View>
 
       <AdminAnalyticsSection />
+
+      <AdminMaintenanceSection />
 
       <View>
         <SectionTitle icon="call-outline" title={t("panel.contactPendingTitle")} style={{ marginBottom: 10 }} />

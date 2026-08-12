@@ -20,6 +20,7 @@ import { ListingCard } from "@/src/components/listing-card";
 import { ListingsMap } from "@/src/components/listings-map";
 import { SearchField } from "@/src/components/search-field";
 import { LanguageFlagButton } from "@/src/components/language-picker";
+import { Button } from "@/src/components/button";
 
 const CATEGORIES = [
   { key: "all", labelKey: "vitrin.categoryAll", minAge: 0 },
@@ -197,12 +198,37 @@ export default function ListingsScreen() {
 }
 
 function HomeIntro({ styles }: { styles: ReturnType<typeof createStyles> }) {
+  const router = useRouter();
   const { t } = useTranslation();
   const colors = useColors();
 
   return (
     <View style={styles.introSections}>
       <Text style={styles.mediationBanner}>{t("vitrin.mediationBanner")}</Text>
+
+      <View style={styles.rolesRow}>
+        <View style={styles.roleCard}>
+          <Ionicons name="home-outline" size={22} color={colors.turquoise} />
+          <Text style={styles.roleTitle}>{t("vitrin.roleHomeownerTitle")}</Text>
+          <Text style={styles.roleBody}>{t("vitrin.roleHomeownerBody")}</Text>
+          <Button
+            title={t("vitrin.roleHomeownerCta")}
+            size="sm"
+            onPress={() => router.push("/(tabs)/ilan-ver")}
+          />
+        </View>
+        <View style={styles.roleCard}>
+          <Ionicons name="construct-outline" size={22} color={colors.turquoise} />
+          <Text style={styles.roleTitle}>{t("vitrin.roleContractorTitle")}</Text>
+          <Text style={styles.roleBody}>{t("vitrin.roleContractorBody")}</Text>
+          <Button
+            title={t("vitrin.roleContractorCta")}
+            size="sm"
+            variant="outline"
+            onPress={() => router.push("/(auth)/kayit")}
+          />
+        </View>
+      </View>
 
       <View style={styles.visualCard}>
         <Image source={urbanRenewalImage} style={styles.visualImage} resizeMode="cover" />
@@ -212,6 +238,7 @@ function HomeIntro({ styles }: { styles: ReturnType<typeof createStyles> }) {
             {t("vitrin.visualTitle")}{" "}
             <Text style={styles.visualTitleAccent}>{t("vitrin.visualTitleAccent")}</Text>
           </Text>
+          <Text style={styles.visualDescription}>{t("vitrin.visualDescription")}</Text>
           <Text style={styles.visualCaption}>{t("vitrin.visualCaption")}</Text>
         </View>
       </View>
@@ -291,6 +318,19 @@ function createStyles(colors: Colors) {
       lineHeight: 21,
       color: colors.inkMuted,
     },
+    rolesRow: { gap: 12 },
+    roleCard: {
+      gap: 8,
+      padding: 16,
+      borderRadius: 14,
+      backgroundColor: colors.mist,
+      borderWidth: 1,
+      borderColor: colors.hairline,
+      borderLeftWidth: 4,
+      borderLeftColor: colors.turquoise,
+    },
+    roleTitle: { fontSize: 17, fontWeight: "600", color: colors.ink },
+    roleBody: { fontSize: 13, lineHeight: 19, color: colors.inkMuted, marginBottom: 4 },
     visualCard: {
       borderRadius: 18,
       overflow: "hidden",
@@ -314,6 +354,7 @@ function createStyles(colors: Colors) {
       color: colors.ink,
     },
     visualTitleAccent: { color: colors.turquoise },
+    visualDescription: { fontSize: 14, lineHeight: 21, color: colors.inkMuted },
     visualCaption: { fontSize: 13, lineHeight: 19, color: colors.inkMuted },
     howItWorks: { gap: 8 },
     howItWorksTitle: { fontSize: 22, fontWeight: "600", color: colors.ink },

@@ -332,4 +332,22 @@ export const api = {
         createdAt: string;
       } | null;
     }>("/api/mobile/v1/announcements/latest"),
+
+  getMaintenanceStatus: () =>
+    request<{
+      maintenanceMode: boolean;
+      message: string | null;
+      updatedAt: string | null;
+    }>("/api/mobile/v1/maintenance"),
+
+  setMaintenanceMode: (maintenanceMode: boolean, message?: string | null) =>
+    request<{
+      maintenanceMode: boolean;
+      message: string | null;
+      updatedAt: string | null;
+    }>(
+      "/api/mobile/v1/admin/maintenance",
+      { method: "POST", body: JSON.stringify({ maintenanceMode, message }) },
+      true
+    ),
 };

@@ -21,9 +21,16 @@
     "heroSubtitleLoading": "Loading listings…",
     "heroSubtitle": "{{count}} buildings waiting for a new life",
     "mediationBanner": "Our platform matches homeowners, contractors, and investors; price offers are made and investor opportunities are offered at the true value of older homes. Until the right, secure match is reached, our team manages the process and required conditions.",
+    "roleHomeownerTitle": "Are you a homeowner?",
+    "roleHomeownerBody": "Publish your building for free. Receive price offers from verified contractors.",
+    "roleHomeownerCta": "Post Listing",
+    "roleContractorTitle": "Are you a contractor?",
+    "roleContractorBody": "Bid on filtered urban-renewal listings.",
+    "roleContractorCta": "Sign Up",
     "visualEyebrow": "Urban renewal",
     "visualTitle": "Solid structures,",
     "visualTitleAccent": "secure tomorrows",
+    "visualDescription": "The process stays transparent and trackable.",
     "visualCaption": "A secure and transparent renewal process.",
     "howItWorksEyebrow": "Process",
     "howItWorksTitle": "How it works",
@@ -72,7 +79,7 @@
   },
   "ilanVer": {
     "title": "List a Building",
-    "subtitle": "Until a secure match is reached, our team manages the process",
+    "subtitle": "Publish your building for free and receive offers from verified contractors",
     "lockedNotice": "You must sign in with a homeowner account to list a building.",
     "sectionBasic": "Basic Information",
     "labelTitle": "Title",
@@ -112,7 +119,7 @@
     "contactEmail": "Email",
     "offerTitleNew": "Make an offer on this listing",
     "offerTitleUpdate": "Update your offer",
-    "offerNotice": "When the right match is made, our team manages the process. Until a secure match is reached, our team manages the required conditions.",
+    "offerNotice": "Parties are brought together; communication and documents progress centrally and transparently.",
     "offerPriceMin": "Min. Price (₺)",
     "offerPriceMax": "Max. Price (₺)",
     "offerDuration": "Estimated Duration (months, optional)",
@@ -231,6 +238,11 @@
     "save": "Save",
     "statPendingApproval": "Pending Approval",
     "statContactPending": "Awaiting Contact",
+    "maintenanceTitle": "Maintenance Mode",
+    "maintenanceOn": "Under maintenance — visitors cannot use the app",
+    "maintenanceOff": "Live — visitors can use the app",
+    "maintenanceTurnOn": "Enable maintenance mode",
+    "maintenanceTurnOff": "Disable maintenance mode",
     "contactPendingTitle": "Awaiting Contact",
     "noContactPending": "No pending contacts.",
     "ownerLabel": "Owner: {{name}} · {{email}}",
@@ -262,7 +274,7 @@
     "contactWhatsAppMessage": "Hello, I have a question about the app.",
     "contactEmailSubject": "About the app",
     "aboutLabel": "About",
-    "aboutBody": "Our platform matches homeowners, contractors, and investors; we offer investor-matching opportunities at the true value of older homes. Until the right, secure match is reached, our team manages the process.",
+    "aboutBody": "Our platform matches homeowners, contractors, and investors; we offer investor-matching opportunities at the true value of older homes. Communication and documents progress centrally and transparently.",
     "versionLabel": "Version {{version}}"
   },
   "announcement": {
@@ -378,5 +390,11 @@
     "reviewsTitle": "Reviews",
     "noReviews": "No reviews have been left yet.",
     "defaultReviewerName": "Homeowner"
+  },
+  "maintenance": {
+    "title": "Maintenance",
+    "defaultMessage": "We are performing short maintenance. Please try again later.",
+    "refresh": "Refresh",
+    "adminLogin": "Admin sign in"
   }
 }

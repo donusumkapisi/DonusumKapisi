@@ -18,8 +18,26 @@ export async function POST(request: Request) {
   try {
     const { email, appleId } = await verifyAppleIdentityToken(parsed.data.identityToken);
 
-    let user = await prisma.user.findUnique({ where: { email } });
+    const linked = await prisma.account.findUnique({
+      where: {
+        provider_providerAccountId: { provider: "apple", providerAccountId: appleId },
+      },
+      include: { user: true },
+    });
+
+    let user = linked?.user ?? null;
+
+    if (!user && email) {
+      user = await prisma.user.findUnique({ where: { email } });
+    }
+
     if (!user) {
+      if (!email) {
+        return NextResponse.json(
+          { error: "Bu Apple hesabıyla kayıtlı bir hesap bulunamadı. Önce kayıt olun." },
+          { status: 404 }
+        );
+      }
       if (!parsed.data.role) {
         return NextResponse.json(
           { error: "Bu Apple hesabıyla kayıtlı bir hesap bulunamadı. Önce kayıt olun." },
@@ -27,7 +45,16 @@ export async function POST(request: Request) {
         );
       }
       user = await prisma.user.create({
-        data: { email, name: parsed.data.name ?? null, role: parsed.data.role },
+        data: {
+          email,
+          name: parsed.data.name ?? null,
+          role: parsed.data.role,
+        },
+      });
+    } else if (parsed.data.name && !user.name) {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { name: parsed.data.name },
       });
     }
 
